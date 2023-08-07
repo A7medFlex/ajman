@@ -1,0 +1,78 @@
+/* General styles for the pagination container */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* Pagination links */
+  .pagination {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    margin-block: 25px;
+    max-width: 950px;
+    margin-inline: auto;
+    margin-top: 40px;
+  }
+
+  .page-item {
+    margin: 0 5px;
+  }
+
+  .page-link {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid #827c7c71;
+    color: var(--dominant-white);
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+}
+body.ar{
+    .page-link i{
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+    }
+}
+
+  .page-link:hover {
+    background-color: var(--complementary-2);
+  }
+
+  /* Active page link */
+  .page-item.active .page-link {
+    background-color: var(--complementary-2);
+    color: var(--complementary-1);
+  }
+
+  /* Pagination arrows */
+  .page-item:first-child .page-link,
+  .page-item:last-child .page-link {
+    font-size: 14px;
+    background-color: var(--complementary-2);
+    color: var(--complementary-1);
+
+  }
+
+
+    .page-item.disabled .page-link {
+        background-color: var(--complementary-2);
+        color: var(--complementary-1);
+        opacity: .4;
+        cursor: not-allowed;
+
+    }
+

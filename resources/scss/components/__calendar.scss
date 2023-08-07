@@ -1,0 +1,194 @@
+#calendar{
+    max-width: 1300px;
+    margin-inline: auto;
+    margin-block: 50px;
+    font-family: inherit;
+    padding-inline: 20px;
+    .fc-day-header.fc-widget-header{
+        height: 30px;
+        vertical-align: middle;
+    }
+}
+.fc-unthemed td.fc-today{
+    background: rgba(206, 204, 204, 0.08);
+    color: var(--complementary-2);
+}
+.fc-event, .fc-event-dot{
+    background-color: #1D3A60F5;
+    border: 1px solid rgba(13, 57, 108, 0.839);
+    color: var(--complementary-2);
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.fc-toolbar.fc-header-toolbar{
+    .fc-center{
+        h2{
+            color: var(--complementary-2);
+        }
+    }
+}
+.fc-right{
+    .fc-button-group{
+        button{
+            margin-inline: 4px;
+            &.fc-state-active{
+                display: inline-block;
+                padding: 0px 15px;
+                background-color: rgba(50,138,241,.07);
+                border: 1px solid rgba(50, 139, 241, 0.396);
+                color: var(--dominant-white);
+                border-radius:15px;
+                -webkit-border-radius:15px;
+                -moz-border-radius:15px;
+                -ms-border-radius:15px;
+                -o-border-radius:15px;
+                font-size: 15px;
+                font-weight: 500;
+            }
+            &:not(&.fc-state-active){
+                display: inline-block;
+                padding: 0px 15px;
+                background-color: var(--complementary-2);
+                color: var(--complementary-1);
+                border-radius:15px;
+                -webkit-border-radius:15px;
+                -moz-border-radius:15px;
+                -ms-border-radius:15px;
+                -o-border-radius:15px;
+                font-size: 15px;
+                font-weight: 500;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+}
+html body div#calendar.fc.fc-unthemed.fc-ltr div.fc-toolbar.fc-header-toolbar div.fc-left button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right, html body.ar div#calendar.fc.fc-unthemed.fc-rtl div.fc-toolbar.fc-header-toolbar div.fc-left button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right{
+    display: inline-block;
+    padding: 0px 15px;
+    background-image: none;
+    background-color: rgba(50,138,241,.07);
+    border: 1px solid rgba(50, 139, 241, 0.396);
+    border-radius:15px;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    -ms-border-radius:15px;
+    -o-border-radius:15px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    &.fc-state-disabled{
+        background-color: var(--complementary-2);
+        color: var(--complementary-1);
+        display: inline-block;
+        padding: 0px 15px;
+        border-radius:15px;
+        -webkit-border-radius:15px;
+        -moz-border-radius:15px;
+        -ms-border-radius:15px;
+        -o-border-radius:15px;
+        font-size: 15px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+    }
+}
+.fc-left .fc-button-group .fc-prev-button, .fc-left .fc-button-group .fc-next-button{
+    display: inline-block;
+    padding: 0px 15px;
+    background-image: none;
+    background-color: rgba(50,138,241,.07);
+    border: 1px solid rgba(50, 139, 241, 0.396);
+    border-radius:15px;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    -ms-border-radius:15px;
+    -o-border-radius:15px;
+    font-size: 15px;
+    font-weight: 500;
+    span{
+        color: var(--dominant-white);
+    }
+}
+html body.ar div#calendar.fc.fc-unthemed.fc-rtl div.fc-toolbar.fc-header-toolbar div.fc-left div.fc-button-group button.fc-next-button.fc-button.fc-state-default.fc-corner-right span.fc-icon.fc-icon-left-single-arrow{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+html body.ar div#calendar.fc.fc-unthemed.fc-rtl div.fc-toolbar.fc-header-toolbar div.fc-left div.fc-button-group button.fc-prev-button.fc-button.fc-state-default.fc-corner-left span.fc-icon.fc-icon-right-single-arrow{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+
+html body div.container div.form-data form.create_form div.form-group.required.flex-1 div.vanilla-calendar-input-wrapper div.vanilla-calendar.vanilla-calendar_to-input.vanilla-calendar_default{
+    background-color: var(--complementary-1);
+    z-index: 22;
+    border: 1px solid #d5d5d53b;
+    button{
+        padding: 10px 15px;
+        background-color: rgba(50,138,241,.07);
+        color: var(--complementary-2);
+    }
+}
+[data-calendar-theme="dark"] .vanilla-calendar-arrow::before {
+    background-color: var(--complementary-2);
+}
+[data-calendar-theme="dark"].vanilla-calendar {
+    --tw-bg-opacity: 1;
+    background-color: var(--complementary-1);
+    z-index: 22;
+    border: 1px solid #efefef29;
+}
+[data-calendar-theme="dark"] .vanilla-calendar-arrow::before {
+    --tw-bg-opacity: 1;
+    background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+}
+
+.vanilla-calendar-week__day{
+    color: var(--complementary-2);
+}
+
+.vanilla-calendar-header{
+    button{
+        padding: 10px 15px;
+        background-color: rgba(50,138,241,.07);
+        color: var(--complementary-2);
+    }
+}
+.vanilla-calendar-months, .vanilla-calendar-years   {
+    button{
+        padding: 10px 15px;
+        background-color: rgba(50,138,241,.07);
+        color: var(--complementary-2);
+    }
+}
+.vanilla-calendar-time__keeping{
+    padding: 10px 25px !important;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.vanilla-calendar-time__hours input, .vanilla-calendar-time__minutes input{
+    background-color: rgba(50,138,241,.07);
+    color: var(--complementary-2);
+}
+.vanilla-calendar-time__range input{
+    background-color: rgba(50,138,241,.07);
+    color: var(--complementary-2);
+    padding-block: 12px;
+    margin-bottom: 5px;
+}
+html body.ar div.container div.form-data form.create_form div.form-group.required.flex-1 div.vanilla-calendar-input-wrapper div.vanilla-calendar.vanilla-calendar_to-input.vanilla-calendar_default div.vanilla-calendar-header button.vanilla-calendar-arrow{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
