@@ -32,7 +32,7 @@
         <div class="logo">
             <img src="{{ asset('images/logo.png') }}" alt="Logo">
         </div>
-        <div class="operations">
+        {{-- <div class="operations">
             <div class="languages">
                 @if(app()->getLocale() === 'en')
                     <a href="/lang/change/ar">AR</a>
@@ -40,7 +40,7 @@
                     <a href="/lang/change/en">EN</a>
                 @endif
             </div>
-        </div>
+        </div> --}}
     </header>
 
 

@@ -33,6 +33,8 @@ class EventsController extends Controller
             'attachments.*' => 'file'
         ]);
 
+        $attributes['user_id'] = auth()->id();
+
         if(request()->hasFile('thumbnail')){
             $attributes['thumbnail'] = request()->file('thumbnail')->store("events/thumbnails");
         }
@@ -65,11 +67,15 @@ class EventsController extends Controller
 
     public function edit(Event $event)
     {
+        if($event->user_id !== auth()->id()) abort(403);
+
         return view('events.edit', compact('event'));
     }
 
     public function update(Event $event)
     {
+        if($event->user_id !== auth()->id()) abort(403);
+
         $attributes = request()->validate([
             'title' => 'required|string|min:4',
             'details' => 'nullable|string',
@@ -109,6 +115,8 @@ class EventsController extends Controller
 
     public function destroy(Event $event)
     {
+        if($event->user_id !== auth()->id()) abort(403);
+
         $event->delete();
         return redirect('/events')->with('success', __('layout.event_deleted'));
     }

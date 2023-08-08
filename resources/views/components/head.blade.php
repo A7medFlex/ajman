@@ -58,13 +58,13 @@
                 </div>
             </div>
             <div class="collection">
-                <div class="languages">
+                {{-- <div class="languages">
                     @if(app()->getLocale() === 'en')
                         <a href="/lang/change/ar">AR</a>
                     @else
                         <a href="/lang/change/en">EN</a>
                     @endif
-                </div>
+                </div> --}}
                 {{-- <div class="searching">
                     <span class="search">
                         <i class="fal fa-search"></i>
@@ -276,13 +276,13 @@
                                 </a></li>
                             @endforeach
                         </ul>
-                        <div class="languages small_screens">
+                        {{-- <div class="languages small_screens">
                             @if(app()->getLocale() === 'en')
                                 <a href="/lang/change/ar">العربية</a>
                             @else
                                 <a href="/lang/change/en">English</a>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>

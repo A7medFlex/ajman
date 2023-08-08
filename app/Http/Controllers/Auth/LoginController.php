@@ -36,19 +36,19 @@ class LoginController extends Controller
             '_token' => $random,
         ]));
 
-        auth()->login($user);
-        return redirect('/');
+        // auth()->login($user);
+        // return redirect('/');
 
-        // try{
-        //     Mail::to(request('email'))
-        //     ->send(new SendLoginLink($user, $url));
-        // }catch(TransportException $e){
-        //     // dd($e->getMessage());
-        //     $user->loginTokens()->delete();
-        //     return redirect('/login')->with('failed', 'Something went wrong, please contact your service provider.');
-        // }
+        try{
+            Mail::to(request('email'))
+            ->send(new SendLoginLink($user, $url));
+        }catch(TransportException $e){
+            // dd($e->getMessage());
+            $user->loginTokens()->delete();
+            return redirect('/login')->with('failed', 'حدث خطأ أثناء إرسال رابط تسجيل الدخول، حاول مرة أخرى');
+        }
 
-        // return redirect('/login')->with('success', 'We have just emailed you with your login link!, please check your inbox');
+        return redirect('/login')->with('success', 'تم إرسال رابط تسجيل الدخول إلى بريدك الإلكتروني');
 
     }
 

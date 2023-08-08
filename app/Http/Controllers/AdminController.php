@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisterUser;
 use App\Models\Blog;
 use App\Models\Library;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class AdminController extends Controller
 {
@@ -34,7 +37,15 @@ class AdminController extends Controller
         if(request()->hasFile('profile_image')) $attributes['profile_image'] = request()->file("profile_image")->store("profile");
 
 
-        User::create($attributes);
+        $user = User::create($attributes);
+
+        try{
+            Mail::to(request('email'))
+            ->send(new RegisterUser($user));
+        }catch(TransportException $e){
+            return back();
+        }
+
         return redirect('/admin/users')->with("success", __('layout.user_created'));
     }
 

@@ -44,8 +44,8 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::get('/', function () {
-        $libraries = Library::latest()->limit(10)->get();
-        $blogs = Blog::latest()->limit(10)->get();
+        $libraries = Library::latest()->limit(20)->get();
+        $blogs = Blog::latest()->limit(20)->get();
 
         return view('home', compact('libraries', 'blogs'));
     });
@@ -144,11 +144,11 @@ Route::middleware('auth')->group(function() {
 
 });
 
-Route::get('/lang/change/{lang}', function ($lang) {
-    if(! in_array($lang, ['ar', 'en'])) abort(400);
+// Route::get('/lang/change/{lang}', function ($lang) {
+//     if(! in_array($lang, ['ar', 'en'])) abort(400);
 
-    App::setLocale($lang);
+//     App::setLocale($lang);
 
-    return redirect()->back()->withCookie(Cookie::forever('locale', $lang));
-});
+//     return redirect()->back()->withCookie(Cookie::forever('locale', $lang));
+// });
 

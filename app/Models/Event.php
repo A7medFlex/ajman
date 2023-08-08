@@ -9,10 +9,15 @@ class Event extends Model
 {
     use HasFactory;
 
-    protected $fillable =['thumbnail','title', 'details', 'start', 'end'];
+    protected $fillable =['user_id', 'thumbnail','title', 'details', 'start', 'end'];
 
     public function attachments()
     {
         return $this->morphMany(Attachment::class, 'attachable');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
