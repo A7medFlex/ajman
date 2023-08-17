@@ -55,6 +55,13 @@
                         <p class="error">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="form-group required">
+                    <label for="password">{{ __('layout.password') }}</label>
+                    <input type="text" name="password" value="{{ old("password") }}"/>
+                    @error('password')
+                        <p class="error">{{ $message }}</p>
+                    @enderror
+                </div>
                 <button type="submit">{{ __('layout.log_in') }}</button>
             </div>
         </div>

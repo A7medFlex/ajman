@@ -16,6 +16,9 @@ return [
     'image' => 'Image',
     'name' => 'Name',
     'email' => 'Email',
+    'password' => 'Password',
+    'update_password' => 'Update Password',
+    'password_updated' => 'Password updated successfully.',
     'job_name' => 'Job Name',
     'settings' => 'Settings',
 

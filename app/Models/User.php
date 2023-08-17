@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'job_name',
+        'password',
         'profile_image',
     ];
 
@@ -41,8 +42,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
     public function loginTokens()
     {

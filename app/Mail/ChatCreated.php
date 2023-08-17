@@ -2,25 +2,24 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Models\Chat;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\App;
 
-class RegisterUser extends Mailable implements ShouldQueue
+class ChatCreated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(protected User $user, protected string $password)
+    public function __construct(public Chat $chat)
     {
-        //
+
     }
 
     /**
@@ -29,7 +28,7 @@ class RegisterUser extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Account Created',
+            subject: 'Chat Created',
         );
     }
 
@@ -39,12 +38,10 @@ class RegisterUser extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.register-user',
+            markdown: 'mail.chat-created',
             with: [
-                'name' => $this->user->name,
-                'email' => $this->user->email,
-                'password' => $this->password,
-                'url' => config('app.url')
+                'title' => $this->chat->title,
+                'url' => config('app.url') . '/chats/' . $this->chat->id
             ]
         );
     }

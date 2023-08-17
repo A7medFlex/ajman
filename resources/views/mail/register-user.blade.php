@@ -1,7 +1,10 @@
 <x-mail::message>
 # Hi, {{ $name }}
 
-Your account has been created. Please click the link below to login.
+Your account has been created. You can login with following credentials.
+<p>Email: {{ $email }}</p>
+
+<p>Password: {{ $password }}</p>
 
 <x-mail::button :url="$url">
 Log In

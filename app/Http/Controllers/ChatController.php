@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Events\CommentCreated;
+use App\Mail\ChatCreated;
 use App\Models\Attachment;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use App\Notifications\CommentPublished;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Notification;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class ChatController extends Controller
 {
@@ -39,6 +42,16 @@ class ChatController extends Controller
             'description' => request('description'),
             'user_id' => auth()->id(),
         ]);
+
+        $users = User::where('id', '!=', auth()->id())->get();
+
+        try{
+            foreach ($users as $user){
+                Mail::to($user->email)->send(new ChatCreated($chat));
+            }
+        }catch(TransportException $e){
+            return back()->with('failed', 'حدث خطأ اثناء إرسال البريد الإلكتروني للمستخدمين.');
+        }
 
         return redirect('/chats/' . $chat->id)->with('success', __('layout.chat_created'));
     }

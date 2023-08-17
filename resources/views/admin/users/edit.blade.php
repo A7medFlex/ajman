@@ -63,5 +63,22 @@
                 <button type="submit">{{ __('layout.update_user') }}</button>
             </div>
         </form>
+
+        <form action="/admin/users/{{ $user->id }}/password" style="margin-top:35px;" method="POST">
+            @csrf
+            @method("PATCH")
+            <div class="form-group optional">
+                <label for="password">{{ __('layout.password') }}</label>
+                <input type="text" name="password" id="password">
+                @error('password')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="form-group flex-1">
+                <button type="submit">{{ __('layout.update_password') }}</button>
+            </div>
+        </form>
     </div>
 </x-layout>
+

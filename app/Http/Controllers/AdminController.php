@@ -31,6 +31,7 @@ class AdminController extends Controller
         $attributes = request()->validate([
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:5',
             'job_name' => 'required|string',
             'profile_image' => 'nullable|image'
         ]);
@@ -41,10 +42,11 @@ class AdminController extends Controller
 
         try{
             Mail::to(request('email'))
-            ->send(new RegisterUser($user));
+            ->send(new RegisterUser($user, request('password')));
         }catch(TransportException $e){
-            return back();
+            return back()->with('failed', 'حدث خطأ اثناء إرسال البريد الإلكتروني للمستخدم.');
         }
+
 
         return redirect('/admin/users')->with("success", __('layout.user_created'));
     }
@@ -74,6 +76,19 @@ class AdminController extends Controller
 
         $user->update($attributes);
         return redirect('/admin/users')->with("success", __('layout.user_updated'));
+    }
+
+    public function update_user_password(User $user)
+    {
+        $attributes = request()->validate([
+            'password' => 'required|string|min:5',
+        ]);
+
+        $user->update([
+            'password' => $attributes['password'],
+        ]);
+
+        return redirect('/admin/users')->with("success", __('layout.password_updated'));
     }
 
     public function destroy_user(User $user)

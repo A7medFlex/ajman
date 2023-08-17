@@ -45,7 +45,7 @@ return [
     'email'                => 'يجب أن يكون حقل :attribute عنوان بريد إلكتروني صحيح البُنية.',
     'ends_with'            => 'يجب أن ينتهي حقل :attribute بأحد القيم التالية: :values',
     'enum'                 => 'حقل :attribute المختار غير صالح.',
-    'exists'               => 'القيمة المحددة :attribute غير موجودة.',
+    'exists'               => 'القيمة التي أدخلتها غير صالحة.',
     'file'                 => 'الحقل :attribute يجب أن يكون ملفا.',
     'filled'               => 'حقل :attribute إجباري.',
     'gt'                   => [

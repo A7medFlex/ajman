@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
-    Route::post('/login/email', [LoginController::class, 'mail']);
-    Route::get('/login/session', [LoginController::class, 'store'])
-        ->middleware('throttle:5,1');
+    Route::post('/login/email', [LoginController::class, 'store']);
+    // Route::get('/login/session', [LoginController::class, 'store'])
+    //     ->middleware('throttle:5,1');
 });
 
 Route::middleware('auth')->group(function() {
@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function() {
         Route::post('/admin/users', [AdminController::class, 'store_user']);
         Route::get('/admin/users/{user}/edit', [AdminController::class, 'edit_user']);
         Route::patch('/admin/users/{user}', [AdminController::class, 'update_user']);
+        Route::patch('/admin/users/{user}/password', [AdminController::class, 'update_user_password']);
         Route::delete('/admin/users/{user}', [AdminController::class, 'destroy_user']);
 
         // tags
