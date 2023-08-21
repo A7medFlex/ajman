@@ -109,5 +109,92 @@
         </div>
     @endif
 
+    @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/glide.min.js" integrity="sha512-IkLiryZhI6G4pnA3bBZzYCT9Ewk87U4DGEOz+TnRD3MrKqaUitt+ssHgn2X/sxoM7FxCP/ROUp6wcxjH/GcI5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        function calculatePerView() {
+            const screenWidth = window.innerWidth;
+            let perView = 4; // Default value
+
+            // Adjust perView based on screen width
+            if (screenWidth < 576) {
+            perView = 1;
+            } else if (screenWidth < 900) {
+                perView = 2;
+            } else if (screenWidth < 1300) {
+            perView = 3;
+            } // You can add more conditions as needed for different screen sizes
+
+            return perView;
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const glide1 = new Glide(".glide-1 .glide", {
+            type: "carousel",
+            startAt: 0,
+
+            perView: calculatePerView(),
+            direction: document.dir,
+            // More options here...
+            });
+
+            glide1.on('mount.after', function() {
+                // Get the total number of slides
+                const totalSlides = glide1.settings.slideCount;
+
+                // Disable the next button when the last slide is reached
+                const nextButton = document.querySelector('.glide-1 .glide__arrow--next');
+                nextButton.disabled = glide1.index === totalSlides - 1;
+                });
+
+                glide1.mount();
+
+                // Get the navigation buttons
+                const prevButton = document.querySelector('.glide-1 .glide__arrow--prev');
+                const nextButton = document.querySelector('.glide-1 .glide__arrow--next');
+
+                // Add click event listeners to the buttons
+                prevButton.addEventListener('click', function() {
+                glide1.go('<');
+                });
+
+                nextButton.addEventListener('click', function() {
+                glide1.go('>');
+                });
+
+                // Glide 2
+                const glide2 = new Glide(".glide-2 .glide", {
+                type: "carousel",
+                startAt: 0,
+                perView: calculatePerView(),
+                    direction: document.dir,
+                // More options here...
+                });
+
+                glide2.on('mount.after', function() {
+                // Get the total number of slides
+                const totalSlides = glide2.settings.slideCount;
+
+                // Disable the next button when the last slide is reached
+                const nextButton = document.querySelector('.glide-2 .glide__arrow--next');
+                nextButton.disabled = glide2.index === totalSlides - 1;
+                });
+
+                glide2.mount();
+
+                // Get the navigation buttons
+                const prevButton2 = document.querySelector('.glide-2 .glide__arrow--prev');
+                const nextButton2 = document.querySelector('.glide-2 .glide__arrow--next');
+
+                // Add click event listeners to the buttons
+                prevButton2.addEventListener('click', function() {
+                glide2.go('<');
+                });
+
+                nextButton2.addEventListener('click', function() {
+                glide2.go('>');
+                });
+
+        });
+    </script>
+    @endpush
 </x-layout>
