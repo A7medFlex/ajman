@@ -9,6 +9,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\Mailer\Exception\TransportException;
 
 class AdminController extends Controller
@@ -31,12 +32,19 @@ class AdminController extends Controller
         $attributes = request()->validate([
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:5',
+            'password' => 'required|string|min:8',
             'job_name' => 'required|string',
             'profile_image' => 'nullable|image'
         ]);
         if(request()->hasFile('profile_image')) $attributes['profile_image'] = request()->file("profile_image")->store("profile");
 
+        // check if password contains at least one special character
+
+        if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $attributes['password'])) {
+            throw ValidationException::withMessages([
+                'password' => 'كلمة المرور يجب أن تحتوي علي حرف واحد علي الأقل من  الرموز الخاصة',
+            ]);
+        }
 
         $user = User::create($attributes);
 

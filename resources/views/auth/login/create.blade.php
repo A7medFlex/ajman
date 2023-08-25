@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200&display=swap" rel="stylesheet">
     @endif
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
     <title>{{ __('layout.log_in') }}</title>
 </head>
 <body class="{{ app()->getLocale() === 'ar' ? 'ar' : '' }}">
@@ -43,8 +45,7 @@
         </div> --}}
     </header>
 
-
-    <form action="/login/email" method="post">
+    <form action="{{ request()->path() === 'admin/login' ? '/admin/login' :  '/login/email' }}" method="post" id="loginForm">
         @csrf
         <div class="form">
             <div class="container">
@@ -62,9 +63,22 @@
                         <p class="error">{{ $message }}</p>
                     @enderror
                 </div>
-                <button type="submit">{{ __('layout.log_in') }}</button>
+                <button
+                    class="g-recaptcha"
+                    data-sitekey="{{ config('services.recaptcha.site_key') }}"
+                    data-callback='onSubmit'
+                    data-action='submit'
+                >
+                    {{ __('layout.log_in') }}
+                </button>
             </div>
         </div>
     </form>
+
+    <script>
+        function onSubmit(token) {
+          document.getElementById("loginForm").submit();
+        }
+    </script>
 </body>
 </html>

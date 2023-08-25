@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
-    Route::post('/login/email', [LoginController::class, 'store']);
-    // Route::get('/login/session', [LoginController::class, 'store'])
-    //     ->middleware('throttle:5,1');
+    Route::post('/login/email', [LoginController::class, 'store'])->middleware('throttle:7,1');
+
+    Route::get('/admin/login', [LoginController::class, 'create']);
+    Route::post('/admin/login', [LoginController::class, 'store_admin'])->middleware('throttle:7,1');
 });
 
 Route::middleware('auth')->group(function() {

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendLoginLink;
 use App\Models\LoginToken;
 use App\Models\User;
+use Closure;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\Mailer\Exception\TransportException;
@@ -72,11 +74,51 @@ class LoginController extends Controller
         request()->validate([
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:5'],
+            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+                if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
+            }],
         ]);
 
-        $user = User::where('email', request('email'))->first();
+        $user = User::where('email', request('email'))
+            ->where('is_admin', 0)
+            ->first();
 
-        if(!password_verify(request('password'), $user->password)){
+        if(!$user || !password_verify(request('password'), $user->password)){
+            throw ValidationException::withMessages([
+                'email' => 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
+            ]);
+        }
+
+        auth()->login($user);
+
+        return redirect('/');
+    }
+
+    public function store_admin()
+    {
+        request()->validate([
+            'email' => ['required', 'email', 'exists:users,email'],
+            'password' => ['required', 'min:5'],
+            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+                if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
+            }],
+        ]);
+
+        $user = User::where('email', request('email'))
+            ->where('is_admin', 1)
+            ->first();
+
+        if(!$user || !password_verify(request('password'), $user->password)){
             throw ValidationException::withMessages([
                 'email' => 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
             ]);

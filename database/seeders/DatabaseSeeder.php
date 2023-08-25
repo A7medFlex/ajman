@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ahmed Ragab',
             'job_name' => 'مدير النظام',
             'email' => 'om5280201@gmail.com',
-            'password' => '12345678',
+            'password' => '@fdlj#jsa)kjdas',
             'is_admin' => true,
         ]);
     }
