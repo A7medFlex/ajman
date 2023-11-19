@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_released')->default(false);
             $table->boolean('is_open')->default(true);
             $table->string('title');
             $table->text('description')->nullable();

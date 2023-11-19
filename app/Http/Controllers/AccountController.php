@@ -34,6 +34,7 @@ class AccountController extends Controller
         $attributes = request()->validate([
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email,'.$user->id,
+            'job_name' => 'required|string',
             'profile_image' => 'nullable|image'
         ]);
         if(request()->hasFile('profile_image')) {

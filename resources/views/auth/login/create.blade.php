@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200&display=swap" rel="stylesheet">
     @endif
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    {{-- <link rel="stylesheet" href="/build/assets/app-cf8a376c.css">
+    <script type="module" src="/build/assets/app-26cda308.js"></script> --}}
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <title>{{ __('layout.log_in') }}</title>
@@ -56,21 +58,39 @@
                         <p class="error">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="form-group required">
+                <div class="form-group required password">
                     <label for="password">{{ __('layout.password') }}</label>
-                    <input type="password" name="password" value="{{ old("password") }}"/>
+                    <input type="password" name="password" value="{{ old("password") }}"/>                        <i class="fa fa-eye" onclick="showPassword(this)"></i>
+                        <script>
+                            function showPassword(e){
+                                let password = e.previousElementSibling
+                                let icon = e
+                                if(password.type == "password"){
+                                    password.type = "text"
+                                    icon.classList.remove("fa-eye")
+                                    icon.classList.add("fa-eye-slash")
+                                }else{
+                                    password.type = "password"
+                                    icon.classList.remove("fa-eye-slash")
+                                    icon.classList.add("fa-eye")
+                                }
+                            }
+                        </script>
                     @error('password')
                         <p class="error">{{ $message }}</p>
                     @enderror
                 </div>
-                <button
+                {{-- <button
                     class="g-recaptcha"
                     data-sitekey="{{ config('services.recaptcha.site_key') }}"
                     data-callback='onSubmit'
                     data-action='submit'
                 >
                     {{ __('layout.log_in') }}
-                </button>
+                </button> --}}
+                <a href="/forget-password" class="forget_password">نسيت كلمة المرور ؟</a>
+                <button type="submit">تسجيل الدخول</button>
+                <a class="special_button" href="https://stg-id.uaepass.ae/idshub/authorize?redirect_uri=http://localhost:8000/uaepass/callback&client_id=ajm_policy_web_stg&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low">تسجيل الدخول بال UAE PASS</a>
             </div>
         </div>
     </form>

@@ -1,13 +1,13 @@
 <x-mail::message>
 
-# Hi, there
+# مرحبا
 
-A new chat created about {{ $title }} , click the button below to view the chat.
+تم إنشاء محادثة جديدة بعنوان : {{ $title }} , اضغط علي الزر بالأسفل لمشاهدة المحادثة
 
 <x-mail::button :url="$url">
-View Chat
+ المحادثة
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+شكرا ,<br>
+برنامج سياسات عجمان
 </x-mail::message>

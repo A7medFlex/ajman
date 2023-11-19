@@ -17,7 +17,7 @@ class ChatCreated extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      */
-    public function __construct(public Chat $chat)
+    public function __construct(protected Chat $chat)
     {
 
     }

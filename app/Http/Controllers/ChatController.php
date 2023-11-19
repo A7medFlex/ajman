@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\CommentCreated;
 use App\Mail\ChatCreated;
+use App\Mail\ReleasedEmail;
 use App\Models\Attachment;
 use App\Models\Chat;
 use App\Models\Message;
@@ -11,14 +12,14 @@ use App\Models\User;
 use App\Notifications\CommentPublished;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Notification;
+use Illuminate\Support\Facades\Notification;
 use Symfony\Component\Mailer\Exception\TransportException;
 
 class ChatController extends Controller
 {
     public function index()
     {
-        $chats = Chat::with('user')->latest();
+        $chats = Chat::where('is_released', true)->with('user')->latest();
         if(request()->has('status')){
             $chats->where('is_open', request('status'));
         }
@@ -53,19 +54,30 @@ class ChatController extends Controller
             return back()->with('failed', 'حدث خطأ اثناء إرسال البريد الإلكتروني للمستخدمين.');
         }
 
-        return redirect('/chats/' . $chat->id)->with('success', __('layout.chat_created'));
+        return back()->with('success', __('layout.chat_created'));
     }
 
     public function show(Chat $chat)
     {
+        if(! $chat->is_released) abort(403);
+
         $chat->load(['messages', 'messages.user', 'messages.attachments', 'user']);
         $messages = $chat->messages()->latest("created_at")->paginate(10);
 
         return view('chats.show', compact('chat', 'messages'));
     }
 
+    public function preview(Chat $chat)
+    {
+        $chat->load('user');
+
+        return view('admin.preview.chats', compact('chat'));
+    }
+
     public function change(Chat $chat)
     {
+        if(! $chat->is_released) abort(403);
+
         if($chat->user_id !== auth()->id()) abort(403);
 
         $chat->update(['is_open' => ! $chat->is_open]);
@@ -75,6 +87,8 @@ class ChatController extends Controller
 
     public function store_message(Chat $chat)
     {
+        if(! $chat->is_released) abort(403);
+
         if(! $chat->is_open) abort(403);
 
         $this->validate(request(), [
@@ -111,4 +125,44 @@ class ChatController extends Controller
 
         return redirect('/chats/' . $chat->id );
     }
+
+    // added
+    public function destroy(Chat $chat)
+    {
+        $chat->delete();
+
+        return back()->with('success', 'تم حذف المحادثة بنجاح.');
+    }
+
+    public function togglelike(Chat $chat)
+    {
+        if(! $chat->is_released) abort(403);
+
+        $chat->togglelike();
+        return redirect()->back();
+    }
+
+    public function release(Chat $chat)
+    {
+        $chat->update(['is_released' => true]);
+
+        Mail::to($chat->user->email)
+            ->send(new ReleasedEmail(
+                type: 'محادثة جديدة',
+                url: route('chat.show', $chat),
+                username: $chat->user->name
+            ));
+
+        return redirect('/dashboard')->with('success', 'تم نشر المحادثة بنجاح.');
+    }
+
+    public function unreleased()
+    {
+        $chats = Chat::where('is_released', false)->with('user')->latest();
+
+        return view('admin.unreleased.chats', [
+            'chats' => $chats->paginate(10)
+        ]);
+    }
+
 }

@@ -9,7 +9,7 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'title', 'description', 'is_open', 'user_id' ];
+    protected $fillable = [ 'title', 'description', 'is_open', 'user_id', 'is_released'];
 
     public function messages()
     {
@@ -19,5 +19,22 @@ class Chat extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function togglelike($user = null)
+    {
+        $user = $user ?: auth()->user();
+        return $this->likes()->toggle($user);
+    }
+
+    public function isLiked($user = null)
+    {
+        $user = $user ?: auth()->user();
+        return $this->likes()->where('user_id', $user->id)->exists();
+    }
+
+    public function likes()
+    {
+        return $this->morphToMany(User::class, 'likeable')->withTimestamps();
     }
 }

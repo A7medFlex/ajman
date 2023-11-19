@@ -67,4 +67,60 @@
         </div>
     </div>
 
+    <div class="likable">
+        <form action="/libraries/{{$library->id}}/likes/toggle" method="post">
+            @method('PATCH')
+            @csrf
+            <button type="submit" class="btn btn-link">
+                <span class="like {{ $library->isLiked() ? 'active' : '' }}">
+                    <i class="fal fa-thumbs-up"></i>
+                    <span>({{ $library->likes()->count() }})</span>
+                </span>
+            </button>
+        </form>
+        <div class="comments_count">
+            <i class="fal fa-comments-alt"></i>
+            <span>({{ $library->comments()->count() }})</span>
+        </div>
+    </div>
+
+    <div class="commentable">
+        <form action="/library/comments" method="POST">
+            @csrf
+            <input type="hidden" name="id" value="{{ $library->id }}">
+            <div class="form-group flex-1">
+                <label for="body">أضف تعليق</label>
+                <textarea name="body" id="body" cols="30" rows="10">{{ old('body') }}</textarea>
+                @error('body')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="form-group flex-1">
+                <button type="submit">أضف</button>
+            </div>
+        </form>
+        <div class="comments" style="margin-top: 40px;">
+            @foreach ($comments as $comment)
+                <div class="comment">
+                    <div class="head">
+                        @if($comment->user->profile_image)
+                            <img src="{{ asset('storage/'. $comment->user->profile_image) }}" alt="Profile Image">
+                        @else
+                            <i class="fal fa-user"></i>
+                        @endif
+                        <div class="meta">
+                            <span class="name">{{ $comment->user->name }}</span>
+                            <span class="job">"{{ $comment->user->job_name }}"</span>
+                        </div>
+                    </div>
+                    <p class="body">
+                        {{ $comment->body }}
+                    </p>
+                </div>
+            @endforeach
+
+            {{ $comments->links() }}
+        </div>
+    </div>
+
 </x-layout>

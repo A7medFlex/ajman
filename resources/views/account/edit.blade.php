@@ -50,6 +50,14 @@
                 @enderror
             </div>
 
+            <div class="form-group required">
+                <label for="job_name">{{ __('layout.job_name') }}</label>
+                <input type="text" name="job_name" id="job_name" value="{{ $user->job_name }}">
+                @error('job_name')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="form-group flex-1">
                 <button type="submit">{{ __('layout.update_user') }}</button>
             </div>

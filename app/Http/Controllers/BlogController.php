@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReleasedEmail;
 use App\Models\Attachment;
 use App\Models\Blog;
+use App\Models\Comment;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $blog = Blog::latest("created_at");
+        $blog = Blog::whereIsReleased(true)->latest("created_at");
         if(request()->has('tag')) {
             $blog->whereHas('tags', function ($query) {
                 $query->where('id', request()->tag);
@@ -78,11 +81,26 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        return view('blog.show', ['blog' => $blog->load('attachments', 'tags')]);
+        if(! $blog->is_released) abort(403);
+        $blog->load('attachments', 'tags');
+        $comments = $blog->comments()->latest()->with('user')->paginate(15);
+
+        return view('blog.show', [
+            'blog' => $blog,
+            'comments' => $comments
+        ]);
+    }
+
+    public function preview(Blog $blog)
+    {
+        $blog->load('user');
+
+        return view('admin.preview.blogs', compact('blog'));
     }
 
     public function edit(Blog $blog)
     {
+        if(! $blog->is_released) abort(403);
         $this->authorize('update', $blog);
 
         $tags = Tag::where('model', Blog::class)->get();
@@ -95,6 +113,7 @@ class BlogController extends Controller
 
     public function update(Blog $blog)
     {
+        if(! $blog->is_released) abort(403);
         $this->authorize('update', $blog);
 
         $attributes = request()->validate([
@@ -149,10 +168,57 @@ class BlogController extends Controller
 
     public function destroy(Blog $blog)
     {
-        $this->authorize('delete', $blog);
+        // $this->authorize('delete', $blog);
 
         $blog->delete();
 
-        return redirect('/blog')->with('success', __('layout.blog_deleted'));
+        return back()->with('success', __('layout.blog_deleted'));
+    }
+
+    public function store_comment()
+    {
+        request()->validate([
+            'body' => 'required|string',
+            'id' => 'required|numeric'
+        ]);
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'commentable_id' => request('id'),
+            'commentable_type' => 'App\Models\Blog',
+            'body' => request('body')
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function togglelike(Blog $blog)
+    {
+        if(! $blog->is_released) abort(403);
+        $blog->togglelike();
+        return redirect()->back();
+    }
+
+    public function release(Blog $blog)
+    {
+        $blog->update(['is_released' => true]);
+
+        Mail::to($blog->user->email)
+            ->send(new ReleasedEmail(
+                type: 'مدونة جديدة',
+                url: route('blog.show', $blog),
+                username: $blog->user->name
+            ));
+
+        return back()->with('success', 'تم نشر المدونة بنجاح.');
+    }
+
+    public function unreleased()
+    {
+        $blogs = Blog::where('is_released', false)->with('user')->latest();
+
+        return view('admin.unreleased.blogs', [
+            'blogs' => $blogs->paginate(10)
+        ]);
     }
 }

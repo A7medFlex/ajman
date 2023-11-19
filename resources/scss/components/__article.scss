@@ -33,8 +33,9 @@ div.show{
             text-align: center;
             align-items: center;
             font-size: 130px;
-            background-color: rgba(50,138,241,.07);
-            color: white;
+            background-color: #4131261c;
+            border: 1px solid var(--dominant-white);
+            color: var(--dominant-white);
             margin-bottom: 20px;
             @media screen and (max-width: 600px){
                 width: 100%;
@@ -46,14 +47,14 @@ div.show{
                 color: var(--dominant-white);
                 font-size: 19px;
                 a{
-                    color: var(--complementary-2);
+                    color: var(--dominant-white);
                     font-weight: 500;
                     text-decoration: underline;
                 }
             }
             p.time{
                 margin-top: 10px;
-                color: rgba(168, 169, 169, 0.459);
+                color: rgba(83, 54, 54, 0.544);
                 font-size: 15px;
                 font-weight: 500;
             }
@@ -67,8 +68,9 @@ div.show{
             a{
                 display: inline-block;
                 padding: 10px 15px;
-                background-color: rgba(50,138,241,.07);
-                border: 1px solid rgba(50, 139, 241, 0.396);
+                background-color: #4131261c;
+                border: 1px solid var(--dominant-white);
+                color: var(--dominant-white);
                 color: var(--dominant-white);
                 border-radius:15px;
                 -webkit-border-radius:15px;
@@ -86,7 +88,7 @@ div.show{
             button{
                 display: inline-block;
                 padding: 10px 15px;
-                background-color: var(--complementary-2);
+                background-color: var(--dominant-white);
                 color: var(--complementary-1);
                 // color: var(--dominant-white);
                 border-radius:15px;
@@ -112,7 +114,7 @@ div.show{
         h2{
             font-size: 40px;
             margin-bottom: 25px;
-            color: var(--complementary-2);
+            color: var(--dominant-white);
             @media screen and (max-width: 600px){
                 font-size: 35px;
             }
@@ -125,6 +127,101 @@ div.show{
                 font-size: 19px;
             }
         }
+    }
+}
+div.likable{
+    padding-block: 20px;
+    max-width: 1300px;
+    margin-inline: auto;
+    margin-top: 50px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    form button > span{
+        font-size: 24px;
+        color: var(--dominant-white);
+        padding: 10px;
+        cursor: pointer;
+        & > span{
+            font-size: 18px;
+            margin-right: 2px;
+        }
+        &.active{
+            i{
+                font-weight: bold;
+            }
+        }
+    }
+    .comments_count{
+        font-size: 24px;
+        color: var(--dominant-white);
+        padding: 10px;
+        & > span{
+            font-size: 18px;
+            margin-right: 2px;
+        }
+    }
+}
+div.commentable{
+    padding: 20px;
+    max-width: 1300px;
+    margin-inline: auto;
+    margin-top: 25px;
+    div.comment{
+        padding: 15px 20px;
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        margin-bottom: 15px;
+        max-width: 900px;
+    }
+    div.head{
+        display: flex;
+        align-items: center;
+        img{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            object-fit: cover;
+        }
+        i.fa-user{
+            margin-right: 10px;
+            font-size: 25px;
+            color: var(--dominant-white);
+            border: 1px solid var(--dominant-white);
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            padding: 8px 12px;
+        }
+        div.meta{
+            display: flex;
+            flex-direction: column;
+            margin-right: 15px;
+            span:first-child{
+                color: var(--dominant-white);
+                font-size: 18px;
+            }
+            span:last-child{
+                color: rgb(168, 169, 169);
+                margin-top: 15px;
+            }
+        }
+    }
+    p.body{
+        color: var(--dominant-white);
+        margin-top: 15px;
     }
 }
 
@@ -141,8 +238,8 @@ div.show{
     a{
         display: inline-block;
         padding: 8px 10px;
-        background-color: rgba(50,138,241,.07);
-        border: 1px solid rgba(50,138,241,.2);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
         color: var(--dominant-white);
         border-radius:15px;
         -webkit-border-radius:15px;
@@ -152,7 +249,7 @@ div.show{
         font-size: 15px;
         font-weight: 500;
         &.active{
-            background-color: white;
+            background-color: var(--dominant-white);
             color: var(--complementary-1);
         }
     }
@@ -163,7 +260,7 @@ div.show{
     width: 100%;
     .title{
         font-size: 25px;
-        color: rgba(224, 225, 225, 0.689);
+        color: rgba(54, 27, 22, 0.689);
         font-weight: 500;
         margin-bottom: 20px;
     }
@@ -184,7 +281,7 @@ div.show{
             cursor: pointer;
             i{
                 font-size: 20px;
-                color: var(--complementary-2);
+                color: var(--dominant-white);
                 cursor: pointer;
             }
         }

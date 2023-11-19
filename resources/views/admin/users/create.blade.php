@@ -47,9 +47,9 @@
                 @enderror
             </div>
 
-            <div class="form-group required">
+            <div class="form-group optional">
                 <label for="job_name">{{ __('layout.job_name') }}</label>
-                <input type="string" name="job_name" id="job_name" value="{{ old("job_name") }}">
+                <input type="string" name="job_name" id="job_name" value="{{ old("job_name", 'موظف') }}">
                 @error('job_name')
                     <p class="error">{{ $message }}</p>
                 @enderror

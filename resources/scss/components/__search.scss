@@ -6,7 +6,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background: linear-gradient(342.65deg,#4a8a98 1.24%,#005293);
+        background-color: var(--dominant-white);
         overflow: auto;
         z-index: 99;
         form{
@@ -25,13 +25,13 @@
                 background-color: transparent;
                 padding: 0 20px;
                 font-size: 20px;
-                color: var(--dominant-white);
-                border-bottom: 1px solid var(--dominant-white);
+                color: var(--complementary-1);
+                border-bottom: 1px solid var(--complementary-1);
                 padding-block: 30px;
                 font-size: 40px;
                 font-weight: bold;
                 &::placeholder{
-                    color: var(--dominant-white);
+                    color: var(--complementary-1);
                 }
                 @media screen and (max-width: 600px) {
                     padding-block: 15px;
@@ -44,7 +44,7 @@
                 margin-top: 10px;
                 font-size: 17px;
                 text-decoration: underline;
-                color: var(--dominant-white);
+                color: var(--complementary-1);
                 background: none;
                 align-self: flex-end;
             }
@@ -77,11 +77,17 @@
                             font-size: 15px;
                         }
                     }
+                    .meta p.title{
+                        color: var(--complementary-1);
+                    }
+                    .meta p.time {
+                        color: #FFFFFF8F;
+                    }
                 }
             }
             .count{
                 margin-bottom: 15px;
-                color: white;
+                color: var(--complementary-1);
                 font-size: 18px;
                 margin-inline: 10px;
             }
@@ -101,5 +107,5 @@ html body div header div.operations div.searching div.all_search div.search_resu
     margin: 0 10px;
 }
 html body.ar div header div.operations div.searching div.all_search div.search_result div.grid li.grid-item a div.image-container div.no-image{
-    background-color: rgba(152, 171, 194, 0.25);
+    background-color: rgba(98, 76, 67, 0.469);
 }

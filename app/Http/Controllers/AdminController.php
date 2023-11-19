@@ -33,7 +33,7 @@ class AdminController extends Controller
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
-            'job_name' => 'required|string',
+            'job_name' => 'nullable|string',
             'profile_image' => 'nullable|image'
         ]);
         if(request()->hasFile('profile_image')) $attributes['profile_image'] = request()->file("profile_image")->store("profile");
@@ -45,6 +45,10 @@ class AdminController extends Controller
                 'password' => 'كلمة المرور يجب أن تحتوي علي حرف واحد علي الأقل من  الرموز الخاصة',
             ]);
         }
+
+        // added
+
+        if(!request()->has('job_name')) $attributes['job_name'] = 'موظف';
 
         $user = User::create($attributes);
 

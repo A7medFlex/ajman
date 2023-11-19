@@ -1,0 +1,190 @@
+.chatgpt{
+    display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(90, 74, 63);
+  width: 650px;
+  padding: 40px 20px;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  form.gpt{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    input{
+        background: none;
+        background-color: rgba(0, 0, 0, 0);
+        background-color: #41312630;
+        color: var(--complementary-1);
+        padding: 15px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        flex: 1;
+    }
+    button{
+        .fa-paper-plane{
+            color: var(--complementary-1);
+            font-size: 20px;
+            cursor: pointer;
+            background-color: rgba(109, 92, 80, 0.59);
+            padding: 15px;
+            border-radius: 10px;
+            margin-right: 5px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            -o-border-radius: 10px;
+    }
+    }
+  }
+  .messages{
+    max-height: 500px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    .message{
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        color: #fff;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+        &.left{
+        background-color: rgba(128, 117, 109, 0.9);
+        margin-right: 80px;
+
+      }
+        &.right{
+            background-color: rgba(109, 92, 80, 0.59);
+        }
+        img{
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            background-color: var(--dominant-white);
+        }
+        p{
+            flex: 1;
+            line-height: 1.4;
+        }
+    }
+  }
+}
+.parentgpt{
+
+    &.active{
+        display: block;
+        .chatgpt{
+            display: block;
+        }
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 100;
+    }
+}
+.gpt_logo{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+    img{
+        width: 100px;
+    }
+    span{
+        color: var(--complementary-2);
+        font-size: 18px;
+        padding: 10px;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+.gpt_button{
+    cursor: pointer;
+    img{
+        background-color: #59483be5;
+        width: 55px;
+        position: fixed;
+        bottom: 50%;
+        right: 20px;
+}
+}
+
+/**
+ * ==============================================
+ * Dot Flashing
+ * ==============================================
+ */
+ .dot-flashing {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #ec7a15;
+    color: #ec7a15;
+    animation: dot-flashing 1s infinite linear alternate;
+    animation-delay: 0.5s;
+  }
+  .dot-flashing::before, .dot-flashing::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+  }
+  .dot-flashing::before {
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #ec7a15;
+    color: #ec7a15;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 0s;
+  }
+  .dot-flashing::after {
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #ec7a15;
+    color: #ec7a15;
+    animation: dot-flashing 1s infinite alternate;
+    animation-delay: 1s;
+  }
+
+  @keyframes dot-flashing {
+    0% {
+      background-color: #ec7a15;
+    }
+    50%, 100% {
+      background-color: rgba(255, 172, 128, 0.236);
+    }
+  }

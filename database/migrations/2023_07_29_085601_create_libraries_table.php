@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('body_en')->nullable();
 
             $table->text('thumbnail')->nullable();
+            $table->boolean('is_released')->default(false);
 
             $table->timestamps();
 

@@ -15,4 +15,9 @@ class Attachment extends Model
     {
         return $this->morphTo();
     }
+
+    public function getNameAttribute($value)
+    {
+        return str($value)->beforeLast('.');
+    }
 }

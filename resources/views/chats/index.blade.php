@@ -1,7 +1,7 @@
 <x-layout title="Chat">
     <div class="special_header">
         <span>
-            <i class="fas fa-comments"></i>
+            <i class="fab fa-telegram-plane fa-comment-alt"></i>
             {{ __('layout.chats') }}
         </span>
         <a href="/chats/create" class="create_user">

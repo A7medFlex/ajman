@@ -7,9 +7,9 @@
     line-height: 1;
 }
 :root{
-    --dominant-white: #FFFFFF;
+    --dominant-white: #413126f5;
     --dominant-black: #000000;
-    --complementary-1: #142638;
+    --complementary-1: #FFFFFF;
     // --complementary-2: #d65215;
     --complementary-2: #FFFFFF;
 }
@@ -57,7 +57,7 @@ button{
 }
 
 .no_records{
-    color: rgba(212, 211, 211, 0.643);
+    color: var(--dominant-white);
     font-size: 25px;
     text-align: center;
     margin-top: 2rem;
@@ -70,4 +70,5 @@ button{
 .container{
     padding-inline: 15px;
     padding-bottom: 40px;
+    min-height: 60vh;
 }

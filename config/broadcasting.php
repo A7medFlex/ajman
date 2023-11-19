@@ -48,7 +48,7 @@ return [
             ],
         ],
 
-        'ably' => [
+        'ably' => [ 
             'driver' => 'ably',
             'key' => env('ABLY_KEY'),
         ],

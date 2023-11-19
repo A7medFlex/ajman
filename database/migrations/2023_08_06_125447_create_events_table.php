@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('details')->nullable();
             $table->timestamp('start');
             $table->timestamp('end');
+            $table->boolean('is_released')->default(false);
             $table->timestamps();
         });
     }

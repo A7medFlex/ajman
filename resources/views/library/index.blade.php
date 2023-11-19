@@ -1,7 +1,7 @@
 <x-layout title="Library">
     <div class="special_header">
         <span>
-            <i class="fas fa-photo-video"></i>
+            <i class="fad fa-bookmark"></i>
             {{ __('layout.library') }}
         </span>
         <a href="/library/create" class="create_user">{{ __('layout.create_library') }}</a>

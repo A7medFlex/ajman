@@ -11,7 +11,9 @@ thead {
 tr {
     padding-bottom: 10px;
     &:not(:first-child){
-        background-color: rgba(50,138,241,.07);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
 
     }
 }
@@ -182,12 +184,12 @@ dd {
     margin-bottom: 20px;
     padding-bottom: 15px;
     padding-inline: 10px;
-    border-bottom: 1px solid #7a91aa7f;
+    border-bottom: 1px solid var(--dominant-white);
     max-width: 950px;
     margin-inline: auto;
     margin-top: 30px;
     span{
-        color: var(--complementary-2);
+        color: var(--dominant-white);
         font-size: 30px;
         font-weight: 500;
         @media screen and (max-width: 768px) {
@@ -197,7 +199,7 @@ dd {
     a{
         color: var(--complementary-1);
         // color: var(--dominant-white);
-        background-color: var(--complementary-2);
+        background-color: var(--dominant-white);
         padding:15px 25px;
         border-radius: 25px;
         -webkit-border-radius: 25px;
@@ -207,6 +209,63 @@ dd {
         @media screen and (max-width: 768px) {
             padding: 10px 20px;
             font-size: 15px;
+        }
+    }
+}
+
+.statics_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    padding-inline: 10px;
+    max-width: 950px;
+    margin-inline: auto;
+    margin-top: 40px;
+    gap: 20px;
+    div.static{
+        .static_header{
+            color: var(--complementary-2);
+            font-size: 25px;
+            font-weight: 500;
+            @media screen and (max-width: 768px) {
+                font-size: 22px;
+            }
+            i{
+                margin-left: 8px;
+            }
+        }
+        .static_body{
+            text-align: center;
+            margin-top: 10px;
+            font-size: 25px;
+            color: var(--complementary-2);
+            font-weight: 600;
+        }
+        background-color: #685141ed;
+        padding: 15px 20px;
+        border-radius: 29px;
+        -webkit-border-radius: 29px;
+        -moz-border-radius: 29px;
+        -ms-border-radius: 29px;
+        -o-border-radius: 29px;
+    }
+}
+div.unreleased{
+    display: flex;
+    flex-direction: column;
+    max-width: 950px;
+    margin-inline: auto;
+    gap: 30px;
+    margin-top: 40px;
+    a{
+        font-size: 23px;
+        text-decoration: underline;
+        color: var(--complementary-2);
+        span{
+            margin-right: 10px;
         }
     }
 }

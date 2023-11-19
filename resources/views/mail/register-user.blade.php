@@ -1,15 +1,16 @@
 <x-mail::message>
-# Hi, {{ $name }}
+# مرحبا {{ $name }}
 
-Your account has been created. You can login with following credentials.
-<p>Email: {{ $email }}</p>
+تم إنشاء حساب خاص بك في سياسات عجمان ، يمكنك تسجيل الدخول بالبيانات المرفقة :
+<p>البريد الإلكتروني: {{ $email }}</p>
 
-<p>Password: {{ $password }}</p>
+<p>كلمة المرور: {{ $password }}</p>
 
 <x-mail::button :url="$url">
-Log In
+تسجيل الدخول
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+شكرا ,<br>
+برنامج سياسات عجمان
+
 </x-mail::message>

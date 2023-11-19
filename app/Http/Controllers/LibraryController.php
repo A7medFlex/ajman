@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReleasedEmail;
 use App\Models\Attachment;
+use App\Models\Comment;
 use App\Models\Library;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class LibraryController extends Controller
 {
     public function index()
     {
-        $library = Library::latest("created_at");
+        $library = Library::whereIsReleased(true)->latest("created_at");
+
         if(request()->has('tag')) {
             $library->whereHas('tags', function ($query) {
                 $query->where('id', request()->tag);
@@ -41,8 +45,6 @@ class LibraryController extends Controller
             'body_ar' => 'required|string',
             'body_en' => 'nullable|string',
             'thumbnail' => 'nullable|image',
-            'attachments' => 'nullable|array',
-            'attachments.*' => 'file'
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -82,11 +84,27 @@ class LibraryController extends Controller
 
     public function show(Library $library)
     {
-        return view('library.show', ['library' => $library->load('attachments', 'tags')]);
+        if(!$library->is_released) abort(404);
+
+        $library->load('attachments', 'tags');
+        $comments = $library->comments()->latest()->with('user')->paginate(15);
+
+        return view('library.show', [
+            'library' => $library,
+            'comments' => $comments
+        ]);
+    }
+
+    public function preview(Library $library)
+    {
+        $library->load('user');
+
+        return view('admin.preview.libraries', compact('library'));
     }
 
     public function edit(Library $library)
     {
+        if(!$library->is_released) abort(404);
         $this->authorize('update', $library);
 
         $tags = Tag::where('model', Library::class)->get();
@@ -99,6 +117,7 @@ class LibraryController extends Controller
 
     public function update(Library $library)
     {
+        if(!$library->is_released) abort(404);
         $this->authorize('update', $library);
 
         $attributes = request()->validate([
@@ -114,7 +133,7 @@ class LibraryController extends Controller
         if(request()->hasFile('thumbnail')){
 
             if($library->thumbnail) unlink(storage_path("app/public/{$library->thumbnail}"));
-            $attributes['thumbnail'] = request()->file('thumbnail')->store("thumbnails");
+            $attributes['thumbnail'] = request()->file('thumbnail')->store("thulibrarymbnails");
         }
 
         $library->update($attributes);
@@ -145,10 +164,57 @@ class LibraryController extends Controller
 
     public function destroy(Library $library)
     {
-        $this->authorize('delete', $library);
+        // $this->authorize('delete', $library);
 
         $library->delete();
 
-        return redirect('/library')->with('success', __('layout.library_deleted'));
+        return back()->with('success', __('layout.library_deleted'));
+    }
+
+    public function store_comment()
+    {
+        request()->validate([
+            'body' => 'required|string',
+            'id' => 'required|numeric'
+        ]);
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'commentable_id' => request('id'),
+            'commentable_type' => 'App\Models\Library',
+            'body' => request('body')
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function togglelike(Library $library)
+    {
+        if(!$library->is_released) abort(404);
+        $library->togglelike();
+        return redirect()->back();
+    }
+
+    public function release(Library $library)
+    {
+        $library->update(['is_released' => true]);
+
+        Mail::to($library->user->email)
+            ->send(new ReleasedEmail(
+                type: 'مكتبة جديدة',
+                url: route('library.show', $library),
+                username: $library->user->name
+            ));
+
+        return back()->with('success', 'تم نشر المكتبة بنجاح.');
+    }
+
+    public function unreleased()
+    {
+        $libraries = Library::where('is_released', false)->with('user')->latest();
+
+        return view('admin.unreleased.libraries', [
+            'libraries' => $libraries->paginate(10)
+        ]);
     }
 }

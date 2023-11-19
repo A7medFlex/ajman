@@ -2,6 +2,8 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 30px 25px;
+    background-color: var(--dominant-white);
+    color: var(--complementary-1);
     @media screen and (max-width: 500px) {
         padding: 30px 10px;
     }
@@ -38,7 +40,7 @@ header{
                     right: 6px;
                     background-color: var(--complementary-2);
                     color: var(--complementary-1);
-                    // color: var(--dominant-white);
+                    // color: var(--complementary-1);
                     padding: 3px 6px;
                     border-radius: 50%;
                     -webkit-border-radius: 50%;
@@ -72,7 +74,7 @@ header{
                 top: 50px;
                 right: 0;
                 background-color: var(--complementary-1);
-                border: 1px solid #cecece21;
+                border: 1px solid var(--dominant-white);
                 padding: 17px;
                 z-index: 233;
                 border-radius: 20px;
@@ -108,7 +110,7 @@ header{
                             font-size: 25px;
                         }
                         &_message{
-                            color: var(--dominant-white);
+                            color: var(--complementary-1);
                             font-size: 15px;
                             line-height: 1.5;
                             span{
@@ -144,14 +146,14 @@ header{
                     margin-bottom: 22px;
                     display: block;
                     font-size: 18px;
-                    color: var(--complementary-2);
+                    color: var(--dominant-white);
                 }
                 position: absolute;
                 width: 400px;
                 top: 50px;
                 right: 0;
                 background-color: var(--complementary-1);
-                border: 1px solid #cecece21;
+                border: 1px solid var(--dominant-white);
                 padding: 17px;
                 z-index: 233;
                 border-radius: 20px;
@@ -169,7 +171,7 @@ header{
         }
         i{
             font-size: 24px;
-            color: var(--dominant-white);
+            color: var(--complementary-1);
             margin: 0 15px;
             cursor: pointer;
             &.fa-times{
@@ -187,7 +189,7 @@ header{
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(342.65deg,#4a8a98 1.24%,#005293);
+                background-color: #413126;
                 z-index: 99;
                 overflow-y: auto;
                 .links{
@@ -205,20 +207,20 @@ header{
                     ul{
                         h3{
                             font-size: 25px;
-                            color: var(--dominant-white);
+                            color: var(--complementary-1);
                             margin-bottom: 35px;
                             i{
                                 font-size: 25px;
                                 margin-inline: 0;
                                 margin-right: 10px;
-                                color: var(--dominant-white);
+                                color: var(--complementary-1);
 
                             }
                         }
                         li{
                             margin: 20px 0;
                             a{
-                                color: var(--dominant-white);
+                                color: var(--complementary-1);
                                 font-size: 18px;
                             }
                             button{
@@ -252,7 +254,7 @@ body.ar{
 
 .languages{
     a{
-        color: var(--dominant-white);
+        color: var(--complementary-1);
         font-size: 20px;
     }
     &.small_screens{
@@ -265,4 +267,16 @@ body.ar{
 html body div header div.operations div.hamburger div.all_hamburger div.links ul li a i, html body div header div.operations div.hamburger div.all_hamburger div.links ul li form button i.fas.fa-sign-out-alt{
     margin-inline: 0 10px;
     font-size: 22px;
+}
+a.dashboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--complementary-2);
+    margin-top: 50px;
+    i{
+        font-size: 30px;
+    }
 }

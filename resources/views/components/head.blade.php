@@ -8,14 +8,14 @@
         <div class="operations">
             <div class="searching">
                 {{-- <span class="search">
-                    <i class="fal fa-search"></i>
+                    <i class="fas fa-search"></i>
                 </span> --}}
                 <div class="all_search" style="{{ session('results') ? 'display:block;' : 'display:none;' }}">
                     <div class="logo_close">
                         <div class="logo">
                             <img src="{{ asset('images/logo.png') }}" alt="Logo">
                         </div>
-                        <i onclick="this.parentElement.parentElement.style.display = 'none';document.body.style.overflow = 'auto';" class="fal fa-times"></i>
+                        <i onclick="this.parentElement.parentElement.style.display = 'none';document.body.style.overflow = 'auto';" class="fas fa-times"></i>
                     </div>
                     <form action="/search" method="GET">
                         <input type="text" name="q" id="q" placeholder="{{ __('layout.search_word') }}" value="{{ session('query') }}">
@@ -34,7 +34,7 @@
                                                     <img src="{{ asset('storage/'. $c->thumbnail) }}" alt="">
                                                 @else
                                                     <div class="no-image">
-                                                        <i class="fal fa-image"></i>
+                                                        <i class="fas fa-image"></i>
                                                     </div>
                                                 @endif
                                                 <div class="overlay">
@@ -45,7 +45,7 @@
                                             <div class="meta">
                                                 <p class="title">{{ $c->title }}</p>
                                                 <p class="time">
-                                                    <i class="fal fa-clock"></i>
+                                                    <i class="fas fa-clock"></i>
                                                     {{ $c->created_at->diffForHumans() }}
                                                 </p>
                                             </div>
@@ -67,14 +67,14 @@
                 </div> --}}
                 {{-- <div class="searching">
                     <span class="search">
-                        <i class="fal fa-search"></i>
+                        <i class="fas fa-search"></i>
                     </span>
                     <div class="all_search" style="{{ session('results') ? 'display:block;' : 'display:none;' }}">
                         <div class="logo_close">
                             <div class="logo">
                                 <img src="{{ asset('images/logo.png') }}" alt="Logo">
                             </div>
-                            <i onclick="this.parentElement.parentElement.style.display = 'none';" class="fal fa-times"></i>
+                            <i onclick="this.parentElement.parentElement.style.display = 'none';" class="fas fa-times"></i>
                         </div>
                         <form action="/search" method="GET">
                             <input type="text" name="q" id="q" placeholder="{{ __('layout.search_word') }}" value="{{ session('query') }}">
@@ -93,7 +93,7 @@
                                                         <img src="{{ asset('storage/'. $c->thumbnail) }}" alt="">
                                                     @else
                                                         <div class="no-image">
-                                                            <i class="fal fa-image"></i>
+                                                            <i class="fas fa-image"></i>
                                                         </div>
                                                     @endif
                                                     <div class="overlay">
@@ -104,7 +104,7 @@
                                                 <div class="meta">
                                                     <p class="title">{{ $c->title }}</p>
                                                     <p class="time">
-                                                        <i class="fal fa-clock"></i>
+                                                        <i class="fas fa-clock"></i>
                                                         {{ $c->created_at->diffForHumans() }}
                                                     </p>
                                                 </div>
@@ -118,7 +118,7 @@
                 </div> --}}
                 <div class="chat">
                     <span class="chat" onclick="this.nextElementSibling.classList.toggle('active')">
-                        <i class="fal fa-comment-alt"></i>
+                        <i class="fab fa-telegram-plane fa-comment-alt"></i>
                     </span>
                     <div class="all_chats">
                         <a href="/chats" class="previous_chats">{{ __('layout.see_all_chats') }}</a>
@@ -144,12 +144,12 @@
                     </div>
                 </div>
                 <a href="/events" class="events">
-                    <i class="fal fa-calendar-alt"></i>
+                    <i class="fas fa-calendar-edit"></i>
                 </a>
             </div>
             <div class="notifications">
                 <span class="notifications" onclick="this.nextElementSibling.classList.toggle('active')">
-                    <i class="fal fa-bell"></i>
+                    <i class="fas fa-bell"></i>
                     @if (auth()->user()->unreadNotifications()->count() > 0)
                         <span class="unread">{{ auth()->user()->unreadNotifications()->count() }}</span>
                     @endif
@@ -180,7 +180,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <button type="submit" class="read propagated_notifications">
-                                                <i class="fal fa-check propagated_notifications"></i>
+                                                <i class="fas fa-check propagated_notifications"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -196,7 +196,7 @@
             </div>
             <div class="hamburger">
                 <span class="hamburger">
-                    <i class="fal fa-bars"></i>
+                    <i class="fas fa-bars"></i>
                 </span>
                 <div class="all_hamburger">
                     <header>
@@ -204,40 +204,38 @@
                             <img src="{{ asset('images/logo.png') }}" alt="Logo">
                         </div>
                         <div class="operations">
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit">
+                                    <i class="fas fa-sign-out-alt" title="تسجيل خروج"></i>
+                                </button>
+                            </form>
+                            <a href="/users/{{ auth()->id() }}">
+                                <i class="fas fa-user"></i>
+                            </a>
                             <span class="search">
-                                <i class="fal fa-search"></i>
+                                <i class="fas fa-search"></i>
                             </span>
-                            <i class="fal fa-times"></i>
+                            <i class="fas fa-times"></i>
                         </div>
 
                     </header>
+                    @if(auth()->user()->is_admin)
+                        <a href="/dashboard" class="dashboard">
+                            <i class="fas fa-cogs"></i>
+                            لوحة التحكم
+                        </a>
+                    @endif
                     <div class="links">
-                        <ul>
+                        {{-- <ul>
                             <h3>
                                 <i class="fas fa-user-cog"></i>
                                 {{ __('layout.settings')}}
                             </h3>
-                            @if(auth()->user()->is_admin)
-                                <li><a href="/admin/users">
-                                    <i class="fas fa-user-shield"></i>
-                                    {{ __('layout.manage_users') }}
-                                </a></li>
-                                <li><a href="/admin/tags">
-                                    <i class="fas fa-tags"></i>
-                                    {{ __('layout.manage_tags') }}</a></li>
-                            @endif
                             <li><a href="/users/{{ auth()->user()->id }}">
                                 <i class="fas fa-user"></i>
                                 {{ __('layout.account') }}</a>
                             </li>
-                            <li><a href="/chats">
-                                <i class="fas fa-comment-alt"></i>
-                                {{ __('layout.chats') }}
-                            </a></li>
-                            <li><a href="/events">
-                                <i class="fal fa-calendar-alt"></i>
-                                {{ __('layout.events') }}
-                            </a></li>
                             <li>
                                 <form action="/logout" method="POST">
                                     @csrf
@@ -247,11 +245,27 @@
                                     </button>
                                 </form>
                            </li>
+                        </ul> --}}
+                        <ul>
+                            <a href="/chats">
+                                <h3>
+                                    <i class="fab fa-telegram-plane fa-comment-alt"></i>
+                                    {{ __('layout.chats') }}
+                                </h3>
+                            </a>
+                        </ul>
+                        <ul>
+                            <a href="/events">
+                                <h3>
+                                    <i class="fas fa-calendar-edit"></i>
+                                    {{ __('layout.events') }}
+                                </h3>
+                            </a>
                         </ul>
                         <ul>
                             <a href="/library">
                                 <h3>
-                                    <i class="fas fa-photo-video"></i>
+                                    <i class="fad fa-bookmark"></i>
                                     {{ __('layout.library') }}
                                 </h3>
                             </a>

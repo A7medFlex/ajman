@@ -2,6 +2,7 @@
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 33%;
+    max-width: 900px;
     &.flex-1{
         flex-basis: 100%;
     }
@@ -46,7 +47,7 @@
             label{
                 display: flex;
                 flex-direction: column;
-                color: var(--complementary-2);
+                color: var(--dominant-white);
                 span{
                     margin-top: 10px;
                     font-size: 22px;
@@ -59,7 +60,7 @@
     }
 
     button{
-        background-color: var(--complementary-2);
+        background-color: var(--dominant-white);
         color: var(--complementary-1);
         // color: var(--dominant-white);
         padding: 15px 30px;
@@ -88,7 +89,7 @@
     & > input, .vanilla-calendar-input-wrapper > input{
         width: 100%;
         height: 40px;
-        border: 1.5px solid #d1ccca38;
+        border: 1.5px solid #4036325e;
         border-radius: 5px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -104,7 +105,7 @@
         color: var(--dominant-white);
         width: 100%;
         height: 150px;
-        border: 1.5px solid #d1ccca38;
+        border: 1.5px solid #4036325e;
         border-radius: 5px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -124,7 +125,7 @@
                 position: absolute;
                 top: 50%;
                 right: 5px;
-                color: rgb(255, 98, 6);
+                color: var(--dominant-white);
                 transform: translateY(-50%);
                 -webkit-transform: translateY(-50%);
                 -moz-transform: translateY(-50%);
@@ -143,7 +144,7 @@
                 position: absolute;
                 top: 50%;
                 right: 5px;
-                color: rgb(180, 180, 185);
+                color: rgba(86, 86, 87, 0.674);
                 transform: translateY(-50%);
                 -webkit-transform: translateY(-50%);
                 -moz-transform: translateY(-50%);
@@ -203,6 +204,22 @@
             }
         }
     }
+    &.password{
+        position: relative;
+        i{
+            position: absolute;
+            top: 75%;
+            left: 10px;
+            transform: translateY(-75%);
+            -webkit-transform: translateY(-75%);
+            -moz-transform: translateY(-75%);
+            -ms-transform: translateY(-75%);
+            -o-transform: translateY(-75%);
+            cursor: pointer;
+            color: var(--dominant-white);
+            font-size: 18px;
+        }
+    }
     &.select{
         color: var(--dominant-white);
         &.multi-select{
@@ -212,8 +229,8 @@
                     span.tag{
                         flex: 1;
                         padding: 6px 10px;
-                        background-color: rgba(50,138,241,.07);
-                        border: 1px solid rgba(50,138,241,.2);
+                        background-color: #4131261c;
+                        border: 1px solid var(--dominant-white);
                         color: var(--dominant-white);
                         border-radius:15px;
                         -webkit-border-radius:15px;
@@ -234,7 +251,8 @@
                 justify-content: space-between;
                 align-items: center;
                 height: 40px;
-                border: 1.5px solid rgba(244, 237, 234, 0.22);
+                border: 1px solid var(--dominant-white);
+                color: var(--dominant-white);
                 border-radius: 5px;
                 -webkit-border-radius: 5px;
                 -moz-border-radius: 5px;
@@ -248,8 +266,8 @@
             }
             .options{
                 opacity: 0;
-                border: 1.5px solid rgba(244, 237, 234, 0.22);
-                position: absolute;
+                border: 1px solid var(--dominant-white);
+                color: var(--dominant-white);                position: absolute;
                 top: 110%;
                 left: 0;
                 width: 100%;
@@ -287,11 +305,11 @@
                     padding: 6px 15px;
                     cursor: pointer;
                     &:hover{
-                        background-color: var(--complementary-2);
+                        background-color: var(--dominant-white);
                         color: var(--complementary-1);
                     }
                     &.selected{
-                        background-color: var(--complementary-2);
+                        background-color: var(--dominant-white);
                         color: var(--complementary-1);
                         // color: var(--dominant-white);
                     }

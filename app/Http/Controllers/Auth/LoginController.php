@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendLoginLink;
+use App\Mail\SendResetLink;
 use App\Models\LoginToken;
 use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\Mailer\Exception\TransportException;
 
@@ -74,14 +76,14 @@ class LoginController extends Controller
         request()->validate([
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:5'],
-            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
-                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                    'secret' => config('services.recaptcha.secret_key'),
-                    'response' => $value,
-                    'remoteip' => request()->ip(),
-                ]);
-                if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
-            }],
+            // 'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+            //     $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            //         'secret' => config('services.recaptcha.secret_key'),
+            //         'response' => $value,
+            //         'remoteip' => request()->ip(),
+            //     ]);
+            //     if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
+            // }],
         ]);
 
         $user = User::where('email', request('email'))
@@ -104,14 +106,14 @@ class LoginController extends Controller
         request()->validate([
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:5'],
-            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
-                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                    'secret' => config('services.recaptcha.secret_key'),
-                    'response' => $value,
-                    'remoteip' => request()->ip(),
-                ]);
-                if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
-            }],
+            // 'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+            //     $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            //         'secret' => config('services.recaptcha.secret_key'),
+            //         'response' => $value,
+            //         'remoteip' => request()->ip(),
+            //     ]);
+            //     if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
+            // }],
         ]);
 
         $user = User::where('email', request('email'))
@@ -127,5 +129,58 @@ class LoginController extends Controller
         auth()->login($user);
 
         return redirect('/');
+    }
+
+    public function forget_password()
+    {
+        return view('auth.login.forget_password');
+    }
+
+    public function send_reset_password_link()
+    {
+        request()->validate([
+            'email' => ['required', 'email', 'exists:users,email'],
+        ]);
+
+        $user = User::where('email', request('email'))->first();
+
+        $url = URL::temporarySignedRoute(
+            'reset-password',
+            now()->addMinutes(30),
+            $user->id
+        );
+
+        try{
+            Mail::to(request('email'))
+            ->send(new SendResetLink($user, $url));
+        }catch(TransportException $e){
+            return redirect('/forget-password')->with('failed', 'حدث خطأ أثناء إرسال رابط إعادة تعيين كلمة المرور، حاول مرة أخرى');
+        }
+
+        return redirect('/forget-password')->with('success', 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني');
+    }
+
+    public function reset_password(User $user)
+    {
+        return view('auth.login.reset_password', compact('user'));
+    }
+
+    public function update_password(User $user)
+    {
+        request()->validate([
+            'password' => ['required', 'min:8', 'string'],
+        ]);
+
+        if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', request('password'))) {
+            throw ValidationException::withMessages([
+                'password' => 'كلمة المرور يجب أن تحتوي علي حرف واحد علي الأقل من  الرموز الخاصة',
+            ]);
+        }
+
+        $user->update([
+            'password' => request('password'),
+        ]);
+
+        return redirect('/login')->with('success', 'تم تغيير كلمة المرور بنجاح');
     }
 }

@@ -143,86 +143,111 @@
     </script>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const uploadAttachments = document.querySelector(".uploadAttachments");
-            const fileInput = uploadAttachments.querySelector("input[type='file']");
-            const filesDiv = uploadAttachments.querySelector(".files");
-            const fileItemsContainer = document.createElement("div"); // Container for file items
-            fileItemsContainer.classList.add("file-items-container");
-            filesDiv.appendChild(fileItemsContainer);
-            let allFiles = new DataTransfer();
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const uploadAttachments = document.querySelector(".uploadAttachments");
+        const fileInput = uploadAttachments.querySelector("input[type='file']");
+        const filesDiv = uploadAttachments.querySelector(".files");
+        const fileItemsContainer = document.createElement("div"); // Container for file items
+        fileItemsContainer.classList.add("file-items-container");
+        filesDiv.appendChild(fileItemsContainer);
+        let allFiles = new DataTransfer();
 
-            uploadAttachments.addEventListener("click", function() {
-                fileInput.click();
-            });
-
-            fileInput.addEventListener("change", function() {
-                appendNewFiles();
-                fileInput.value = "";
-                fileInput.files = allFiles.files;
-            });
-
-            function appendNewFiles() {
-                const files = fileInput.files;
-                for (const file of files) {
-                    const fileItem = createFileItem(file);
-                    fileItemsContainer.appendChild(fileItem); // Append to the container
-                    allFiles.items.add(file); // Add to the DataTransfer object
-                }
-
-                // Show the upload icon if files are present
-                if (files.length > 0) {
-                    uploadAttachments.classList.add("active");
-                } else {
-                    uploadAttachments.classList.remove("active");
-                }
-            }
-
-            function createFileItem(file) {
-                const fileItem = document.createElement("div");
-                fileItem.classList.add("file-item");
-
-                const fileIcon = document.createElement("i");
-                fileIcon.classList.add("fal", "fa-file");
-                fileItem.appendChild(fileIcon);
-
-                const fileName = document.createElement("div");
-                fileName.classList.add("file-name");
-                fileName.textContent = file.name;
-                fileItem.appendChild(fileName);
-                fileItem.addEventListener("click", function(e) {
-                    e.stopPropagation();
-                });
-
-                const removeBtn = document.createElement("span");
-                removeBtn.classList.add("remove-btn");
-                removeBtn.innerHTML = "x";
-                removeBtn.addEventListener("click", function(event) {
-                    event.stopPropagation();
-                    removeFile(file);
-                    fileItem.remove();
-                    // updateFilesDisplay(); // Update the display after removing the file
-                });
-                fileItem.appendChild(removeBtn);
-
-                return fileItem;
-            }
-
-            function removeFile(fileToRemove) {
-                const dt = new DataTransfer();
-                const files = allFiles.files;
-                for (const file of files) {
-                    if (file !== fileToRemove) {
-                        dt.items.add(file);
-                    }
-                }
-                allFiles = dt;
-                fileInput.value = "";
-                fileInput.files = allFiles.files;
-            }
+        uploadAttachments.addEventListener("click", function() {
+            fileInput.click();
         });
-    </script>
+
+        fileInput.addEventListener("change", function() {
+            appendNewFiles();
+            fileInput.value = "";
+            fileInput.files = allFiles.files;
+        });
+
+        function appendNewFiles() {
+            const files = fileInput.files;
+            for (const file of files) {
+                const fileItem = createFileItem(file);
+                fileItemsContainer.appendChild(fileItem); // Append to the container
+                allFiles.items.add(file); // Add to the DataTransfer object
+            }
+
+            // Show the upload icon if files are present
+            if (files.length > 0) {
+                uploadAttachments.classList.add("active");
+            } else {
+                uploadAttachments.classList.remove("active");
+            }
+        }
+
+        function createFileItem(file) {
+            const fileItem = document.createElement("div");
+            fileItem.classList.add("file-item");
+
+            const fileIcon = document.createElement("i");
+            fileIcon.classList.add("fal", "fa-file");
+            fileItem.appendChild(fileIcon);
+
+            const fileName = document.createElement("div");
+            fileName.classList.add("file-name");
+            fileName.textContent = file.name;
+            fileItem.appendChild(fileName);
+            fileItem.addEventListener("click", function(e) {
+                e.stopPropagation();
+
+                // console.log(allFiles.files)
+
+                // popup appear to change the file name
+                const newFileName = prompt("أدخل اسم الملف الجديد");
+                if (newFileName) {
+
+                    fileName.textContent = newFileName;
+
+                    const parts = file.name.split('.');
+                    const extension = parts[parts.length - 1];
+
+                    const newFile = new File([file], `${newFileName}.${extension}`, {
+                        type: file.type
+                    });
+
+                    // Replace the old file with the new one
+                    const index = [...allFiles.files].indexOf(file);
+                    allFiles.items.remove(index);
+                    allFiles.items.add(newFile);
+
+                    // Update the file input
+                    fileInput.value = "";
+                    fileInput.files = allFiles.files;
+                }
+            });
+
+            const removeBtn = document.createElement("span");
+            removeBtn.classList.add("remove-btn");
+            removeBtn.innerHTML = "x";
+            removeBtn.addEventListener("click", function(event) {
+                event.stopPropagation();
+                removeFile(file);
+                fileItem.remove();
+                // updateFilesDisplay(); // Update the display after removing the file
+            });
+            fileItem.appendChild(removeBtn);
+
+            return fileItem;
+        }
+
+        function removeFile(fileToRemove) {
+            const dt = new DataTransfer();
+            const files = allFiles.files;
+            for (const file of files) {
+                if (file !== fileToRemove) {
+                    dt.items.add(file);
+                }
+            }
+            allFiles = dt;
+            fileInput.value = "";
+            fileInput.files = allFiles.files;
+        }
+    });
+</script>
 
 
       <script>

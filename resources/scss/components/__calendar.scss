@@ -11,12 +11,12 @@
 }
 .fc-unthemed td.fc-today{
     background: rgba(206, 204, 204, 0.08);
-    color: var(--complementary-2);
+    color: var(--dominant-white);
 }
 .fc-event, .fc-event-dot{
-    background-color: #1D3A60F5;
-    border: 1px solid rgba(13, 57, 108, 0.839);
-    color: var(--complementary-2);
+    background-color: #4131261c;
+    border: 1px solid var(--dominant-white);
+    color: var(--dominant-white);
     padding: 5px;
     font-size: 16px;
     font-weight: 500;
@@ -24,7 +24,7 @@
 .fc-toolbar.fc-header-toolbar{
     .fc-center{
         h2{
-            color: var(--complementary-2);
+            color: var(--dominant-white);
         }
     }
 }
@@ -35,8 +35,8 @@
             &.fc-state-active{
                 display: inline-block;
                 padding: 0px 15px;
-                background-color: rgba(50,138,241,.07);
-                border: 1px solid rgba(50, 139, 241, 0.396);
+                background-color: #4131261c;
+                border: 1px solid var(--dominant-white);
                 color: var(--dominant-white);
                 border-radius:15px;
                 -webkit-border-radius:15px;
@@ -49,8 +49,9 @@
             &:not(&.fc-state-active){
                 display: inline-block;
                 padding: 0px 15px;
-                background-color: var(--complementary-2);
-                color: var(--complementary-1);
+                background-color: #4131261c;
+                border: 1px solid var(--dominant-white);
+                color: var(--dominant-white);
                 border-radius:15px;
                 -webkit-border-radius:15px;
                 -moz-border-radius:15px;
@@ -68,8 +69,9 @@ html body div#calendar.fc.fc-unthemed.fc-ltr div.fc-toolbar.fc-header-toolbar di
     display: inline-block;
     padding: 0px 15px;
     background-image: none;
-    background-color: rgba(50,138,241,.07);
-    border: 1px solid rgba(50, 139, 241, 0.396);
+    background-color: #4131261c;
+    border: 1px solid var(--dominant-white);
+    color: var(--dominant-white);
     border-radius:15px;
     -webkit-border-radius:15px;
     -moz-border-radius:15px;
@@ -77,10 +79,10 @@ html body div#calendar.fc.fc-unthemed.fc-ltr div.fc-toolbar.fc-header-toolbar di
     -o-border-radius:15px;
     font-size: 15px;
     font-weight: 500;
-    color: white;
     &.fc-state-disabled{
-        background-color: var(--complementary-2);
-        color: var(--complementary-1);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
         display: inline-block;
         padding: 0px 15px;
         border-radius:15px;
@@ -98,8 +100,9 @@ html body div#calendar.fc.fc-unthemed.fc-ltr div.fc-toolbar.fc-header-toolbar di
     display: inline-block;
     padding: 0px 15px;
     background-image: none;
-    background-color: rgba(50,138,241,.07);
-    border: 1px solid rgba(50, 139, 241, 0.396);
+    background-color: #4131261c;
+    border: 1px solid var(--dominant-white);
+    color: var(--dominant-white);
     border-radius:15px;
     -webkit-border-radius:15px;
     -moz-border-radius:15px;
@@ -128,21 +131,22 @@ html body.ar div#calendar.fc.fc-unthemed.fc-rtl div.fc-toolbar.fc-header-toolbar
 
 
 html body div.container div.form-data form.create_form div.form-group.required.flex-1 div.vanilla-calendar-input-wrapper div.vanilla-calendar.vanilla-calendar_to-input.vanilla-calendar_default{
-    background-color: var(--complementary-1);
+    background-color: var(--complementary-2);
     z-index: 22;
-    border: 1px solid #d5d5d53b;
+    border: 1px solid #3e303077;
     button{
         padding: 10px 15px;
-        background-color: rgba(50,138,241,.07);
-        color: var(--complementary-2);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
     }
 }
 [data-calendar-theme="dark"] .vanilla-calendar-arrow::before {
-    background-color: var(--complementary-2);
+    background-color: var(--dominant-white);
 }
 [data-calendar-theme="dark"].vanilla-calendar {
     --tw-bg-opacity: 1;
-    background-color: var(--complementary-1);
+    background-color: var(--complementary-2);
     z-index: 22;
     border: 1px solid #efefef29;
 }
@@ -152,21 +156,23 @@ html body div.container div.form-data form.create_form div.form-group.required.f
 }
 
 .vanilla-calendar-week__day{
-    color: var(--complementary-2);
+    color: var(--dominant-white);
 }
 
 .vanilla-calendar-header{
     button{
         padding: 10px 15px;
-        background-color: rgba(50,138,241,.07);
-        color: var(--complementary-2);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
     }
 }
 .vanilla-calendar-months, .vanilla-calendar-years   {
     button{
         padding: 10px 15px;
-        background-color: rgba(50,138,241,.07);
-        color: var(--complementary-2);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
     }
 }
 .vanilla-calendar-time__keeping{
@@ -176,12 +182,14 @@ html body div.container div.form-data form.create_form div.form-group.required.f
     align-content: center;
 }
 .vanilla-calendar-time__hours input, .vanilla-calendar-time__minutes input{
-    background-color: rgba(50,138,241,.07);
-    color: var(--complementary-2);
+    background-color: #4131261c;
+    border: 1px solid var(--dominant-white);
+    color: var(--dominant-white);
 }
 .vanilla-calendar-time__range input{
-    background-color: rgba(50,138,241,.07);
-    color: var(--complementary-2);
+    background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
     padding-block: 12px;
     margin-bottom: 5px;
 }

@@ -18,8 +18,9 @@
         -moz-border-radius: 50%;
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
-        background-color: rgba(50,138,241,.07);
-        border: 1px solid rgba(19, 95, 182, 0.398);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
+        color: var(--dominant-white);
         margin-right: 30px;
         display: flex;
         align-items: center;
@@ -89,8 +90,8 @@
         -moz-border-radius: 25px;
         -ms-border-radius: 25px;
         -o-border-radius: 25px;
-        background-color: rgba(50,138,241,.07);
-        border: 1px solid rgba(19, 95, 182, 0.398);
+        background-color: #4131261c;
+        border: 1px solid var(--dominant-white);
         color: var(--dominant-white);
         font-weight: bold;
         cursor: pointer;

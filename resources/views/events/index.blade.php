@@ -23,12 +23,14 @@
     <x-head></x-head>
     <div class="special_header">
         <span>
-            <i class="fal fa-calendar-alt"></i>
-            {{ __('layout.events') }}
+            <i class="fas fa-calendar-edit"></i>
+            الفعاليات
         </span>
         <a href="/events/create" class="create_user">{{ __('layout.create_event') }}</a>
     </div>
     <div id='calendar'></div>
+
+    <x-foot></x-foot>
 
   <script>
     $(document).ready(function() {
@@ -56,7 +58,7 @@
 
       $('#calendar').fullCalendar({
         defaultView: 'month',
-        locale: document.documentElement.lang,
+        locale: 'en',
         header: {
           left: 'prev,next today',
           center: 'title',

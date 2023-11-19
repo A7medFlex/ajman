@@ -75,7 +75,7 @@
             <div class="form-group optional flex-1">
                 <label for="files">{{ __('layout.upload_attachments') }}</label>
                 <div class="uploadAttachments">
-                    <input type="file" name="attachments[]" id="files" multiple style="display: none;">
+                    <input type="file" name="attachments[]" multiple id="files" style="display: none;">
                     <div class="files">
                         <i class="fal fa-cloud-upload"></i>
                     </div>
@@ -143,6 +143,31 @@
                 fileItem.appendChild(fileName);
                 fileItem.addEventListener("click", function(e) {
                     e.stopPropagation();
+
+                    // console.log(allFiles.files)
+
+                    // popup appear to change the file name
+                    const newFileName = prompt("أدخل اسم الملف الجديد");
+                    if (newFileName) {
+
+                        fileName.textContent = newFileName;
+
+                        const parts = file.name.split('.');
+                        const extension = parts[parts.length - 1];
+
+                        const newFile = new File([file], `${newFileName}.${extension}`, {
+                            type: file.type
+                        });
+
+                        // Replace the old file with the new one
+                        const index = [...allFiles.files].indexOf(file);
+                        allFiles.items.remove(index);
+                        allFiles.items.add(newFile);
+
+                        // Update the file input
+                        fileInput.value = "";
+                        fileInput.files = allFiles.files;
+                    }
                 });
 
                 const removeBtn = document.createElement("span");
