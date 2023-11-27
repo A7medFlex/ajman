@@ -46,17 +46,20 @@ div.form{
             -o-border-radius: 5px;
             font-size: 17px;
             font-weight: 500;
-            background-color: #4131261c;
-            border: 1px solid var(--dominant-white);
-            color: var(--dominant-white);
+            background-color: var(--dominant-white);
+            color: var(--complementary-1);
             cursor: pointer;
         }
         .special_button{
-            background-color: var(--dominant-white);
+            background-color: var(--complementary-2);
+            border: 1px solid var(--dominant-white);
             color: var(--complementary-2);
             text-align: center;
             font-weight: 500;
             margin-top: 15px;
+            img{
+                width: 110px;
+            }
         }
     }
 }

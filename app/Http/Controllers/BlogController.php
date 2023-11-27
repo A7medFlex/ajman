@@ -76,6 +76,10 @@ class BlogController extends Controller
             else ValidationException::withMessages(['tags' => 'The selected tag is invalid']);
         }
 
+        if(auth()->user()->is_admin) {
+            $this->release($blog);
+        }
+
         return redirect('/blog')->with('success', __('layout.blog_created'));
     }
 
@@ -210,7 +214,7 @@ class BlogController extends Controller
                 username: $blog->user->name
             ));
 
-        return back()->with('success', 'تم نشر المدونة بنجاح.');
+        return redirect('/dashboard')->with('success', 'تم نشر المدونة بنجاح.');
     }
 
     public function unreleased()

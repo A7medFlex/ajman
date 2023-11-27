@@ -26,9 +26,6 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-Route::post('/chatgpt', ChatGPTController::class);
-
-
 Route::middleware('guest')->group(function() {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login/email', [LoginController::class, 'store'])->middleware('throttle:7,1');
@@ -50,6 +47,9 @@ Route::middleware('guest')->group(function() {
 
 
 Route::middleware('auth')->group(function() {
+
+    Route::post('/chatgpt', ChatGPTController::class);
+
 
     // admin routes
     Route::middleware('can:admin')->group(function() {
@@ -136,6 +136,7 @@ Route::middleware('auth')->group(function() {
     });
 
     Route::view('/about', 'about');
+    Route::view('/faq', 'faq');
 
     // library routes
     Route::get('/library', [LibraryController::class, 'index']);

@@ -44,10 +44,10 @@ div.show{
         .meta{
             margin-top: 20px;
             .author{
-                color: var(--dominant-white);
+                color: var(--dominant-black);
                 font-size: 19px;
                 a{
-                    color: var(--dominant-white);
+                    color: var(--dominant-black);
                     font-weight: 500;
                     text-decoration: underline;
                 }
@@ -122,7 +122,7 @@ div.show{
         p.body{
             font-size: 22px;
             line-height: 1.5;
-            color: var(--dominant-white);
+            color: var(--dominant-black);
             @media screen and (max-width: 600px){
                 font-size: 19px;
             }
@@ -171,7 +171,7 @@ div.commentable{
         padding: 15px 20px;
         background-color: #4131261c;
         border: 1px solid var(--dominant-white);
-        color: var(--dominant-white);
+        color: var(--dominant-black);
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
@@ -220,7 +220,7 @@ div.commentable{
         }
     }
     p.body{
-        color: var(--dominant-white);
+        color: var(--dominant-black);
         margin-top: 15px;
     }
 }

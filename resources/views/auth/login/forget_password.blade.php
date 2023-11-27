@@ -22,7 +22,7 @@
 <body class="{{ app()->getLocale() === 'ar' ? 'ar' : '' }}">
     <header>
         <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+            <img src="{{ asset('images/logo.svg') }}" alt="Logo">
         </div>
         {{-- <div class="operations">
             <div class="languages">

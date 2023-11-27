@@ -2,8 +2,7 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 30px 25px;
-    background-color: var(--dominant-white);
-    color: var(--complementary-1);
+    background-color: var(--complementary-1);
     @media screen and (max-width: 500px) {
         padding: 30px 10px;
     }
@@ -38,7 +37,7 @@ header{
                     position: absolute;
                     top: -5px;
                     right: 6px;
-                    background-color: var(--complementary-2);
+                    background-color: var(--dominant-white);
                     color: var(--complementary-1);
                     // color: var(--complementary-1);
                     padding: 3px 6px;
@@ -48,7 +47,7 @@ header{
                     -ms-border-radius: 50%;
                     -o-border-radius: 50%;
                     font-size: 13px;
-                    font-weight: 500;
+                    font-weight: bold;
                     pointer-events: none;
                 }
             }
@@ -73,7 +72,7 @@ header{
                 width: 400px;
                 top: 50px;
                 right: 0;
-                background-color: var(--complementary-1);
+                background-color: var(--complementary-2);
                 border: 1px solid var(--dominant-white);
                 padding: 17px;
                 z-index: 233;
@@ -91,7 +90,7 @@ header{
                         margin-bottom: 22px;
                         display: block;
                         font-size: 18px;
-                        color: var(--complementary-2);
+                        color: var(--dominant-white);
                         cursor: pointer;
                         background: transparent;
                         text-decoration: underline;
@@ -110,11 +109,11 @@ header{
                             font-size: 25px;
                         }
                         &_message{
-                            color: var(--complementary-1);
+                            color: var(--dominant-black);
                             font-size: 15px;
                             line-height: 1.5;
                             span{
-                                color: var(--complementary-2);
+                                color: var(--dominant-white);
                                 font-weight: bold;
                             }
                         }
@@ -171,7 +170,7 @@ header{
         }
         i{
             font-size: 24px;
-            color: var(--complementary-1);
+            color: var(--dominant-white);
             margin: 0 15px;
             cursor: pointer;
             &.fa-times{
@@ -189,7 +188,7 @@ header{
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: #413126;
+                background-color: var(--complementary-1);
                 z-index: 99;
                 overflow-y: auto;
                 .links{
@@ -207,13 +206,13 @@ header{
                     ul{
                         h3{
                             font-size: 25px;
-                            color: var(--complementary-1);
+                            color: var(--dominant-white);
                             margin-bottom: 35px;
                             i{
                                 font-size: 25px;
                                 margin-inline: 0;
                                 margin-right: 10px;
-                                color: var(--complementary-1);
+                                color: var(--dominant-white);
 
                             }
                         }
@@ -274,7 +273,7 @@ a.dashboard{
     justify-content: center;
     font-size: 24px;
     font-weight: bold;
-    color: var(--complementary-2);
+    color: var(--dominant-white);
     margin-top: 50px;
     i{
         font-size: 30px;

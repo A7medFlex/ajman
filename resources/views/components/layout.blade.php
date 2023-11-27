@@ -46,7 +46,10 @@
     <div class="parentgpt" onclick="this.classList.toggle('active')">
         <div class="chatgpt">
             <div class="gpt_logo">
-                <img src="/images/logowithname.png" alt="Avatar">
+                <div class="logo">
+                    <img src="/images/logowithoutname.png" alt="Avatar">
+                    المساعد الذكي
+                </div>
                 <span class="delete_history">حذف المحاثة</span>
             </div>
             <div class="messages">
@@ -87,7 +90,7 @@
             for(let i=0;i<messages.length;i++){
                 if(i%2==0){
                     $(".messages > .message").last().after('<div class="right message">' +
-                    '<img src="{{ asset('storage/'. auth()->user()->profile_image) }}" alt="Avatar">' +
+                    '<img src="{{ auth()->user()->profile_image ? asset('storage/'. auth()->user()->profile_image) : '/images/avatar.png' }}" alt="Avatar">' +
                     '<p>' + messages[i] + '</p>' +
                     '</div>');
                 }else{

@@ -60,6 +60,10 @@ class EventsController extends Controller
             Attachment::insert($attachments);
         }
 
+        if(auth()->user()->is_admin) {
+            $this->release($event);
+        }
+
         return redirect('/events')->with('success', __('layout.event_created'));
     }
 
@@ -190,7 +194,8 @@ class EventsController extends Controller
                 username: $event->user->name
             ));
 
-        return back()->with('success', 'تم نشر الفعالية بنجاح.');
+        return redirect('/dashboard')->with('success', 'تم نشر الفعالية بنجاح.');
+
     }
 
     public function unreleased()

@@ -13,7 +13,7 @@ tr {
     &:not(:first-child){
         background-color: #4131261c;
         border: 1px solid var(--dominant-white);
-        color: var(--dominant-white);
+        color: var(--dominant-black);
 
     }
 }
@@ -46,7 +46,7 @@ td {
         }
     }
     i{
-        color: var(--complementary-2);
+        color: var(--dominant-white);
         font-size: 24px;
 
     }
@@ -81,7 +81,7 @@ th {
     text-align: start;
     font-weight: 700;
     font-size: 18px;
-    color: var(--complementary-2);
+    // color: var(--complementary-2);
 }
 dd {
     margin: 0 0 40px 0;
@@ -244,7 +244,7 @@ dd {
             color: var(--complementary-2);
             font-weight: 600;
         }
-        background-color: #685141ed;
+        background-color: var(--dominant-white);
         padding: 15px 20px;
         border-radius: 29px;
         -webkit-border-radius: 29px;

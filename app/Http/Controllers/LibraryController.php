@@ -79,6 +79,10 @@ class LibraryController extends Controller
             else ValidationException::withMessages(['tags' => 'The selected tag is invalid']);
         }
 
+        if(auth()->user()->is_admin) {
+            $this->release($library);
+        }
+
         return redirect('/library')->with('success', __('layout.library_created'));
     }
 
@@ -206,7 +210,8 @@ class LibraryController extends Controller
                 username: $library->user->name
             ));
 
-        return back()->with('success', 'تم نشر المكتبة بنجاح.');
+        return redirect('/dashboard')->with('success', 'تم نشر المكتبة بنجاح.');
+
     }
 
     public function unreleased()

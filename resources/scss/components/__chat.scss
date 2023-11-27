@@ -5,7 +5,7 @@
     &.relative{
         position: relative;
         .author{
-            color: var(--dominant-white);
+            color: var(--dominant-black);
             font-size: 19px;
             margin-bottom: 15px;
             margin-top: 25px !important;
@@ -13,7 +13,7 @@
                 font-size: 17px;
             }
             a{
-                color: var(--dominant-white);
+                color: var(--dominant-black);
                 font-weight: 500;
                 text-decoration: underline;
             }
@@ -105,7 +105,7 @@
     }
     .body{
         font-size: 20px;
-        color: var(--dominant-white);
+        color: var(--dominant-black);
         // margin-bottom: 25px;
         line-height: 1.5;
     }
@@ -247,7 +247,7 @@
             padding: 0px 15px;
         }
         position: relative;
-        background-color: #4131261c;
+        background-color: var(--complementary-2);
         border: 1px solid var(--dominant-white);
         color: var(--dominant-white);
 
@@ -335,7 +335,7 @@
                         background-color: var(--dominant-white);
                     }
                     &.closed    {
-                        background-color: rgba(193, 193, 193, 0.592);
+                        background-color: rgba(46, 35, 35, 0.737);
                     }
                 }
             }

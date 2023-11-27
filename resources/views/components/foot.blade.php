@@ -11,6 +11,7 @@
       <p class="footer-links">
 
         <a href="/about" class="link-1">عن عجمان</a>
+        <a href="/faq" class="link-1">الأسئلة الشائعة</a>
         @if(!auth()->user()->uaepass_id)
             <a href="https://stg-id.uaepass.ae/idshub/authorize?redirect_uri=http://localhost:8000/uaepass/callback&client_id=ajm_policy_web_stg&response_type=code&state=ajman2023&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low">ربط الحساب بال UAE Pass</a>
         @endif
@@ -19,7 +20,7 @@
     </div>
 
     <div class="footer-center">
-
+        <h3>للتواصل :</h3>
       <div>
         <i class="fas fa-map-marker"></i>
         <p>

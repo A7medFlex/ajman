@@ -6,7 +6,7 @@
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: var(--dominant-white);
+        background-color: var(--complementary-1);
         overflow: auto;
         z-index: 99;
         form{
@@ -25,13 +25,13 @@
                 background-color: transparent;
                 padding: 0 20px;
                 font-size: 20px;
-                color: var(--complementary-1);
-                border-bottom: 1px solid var(--complementary-1);
+                color: var(--dominant-white);
+                border-bottom: 1px solid var(--dominant-white);
                 padding-block: 30px;
                 font-size: 40px;
                 font-weight: bold;
                 &::placeholder{
-                    color: var(--complementary-1);
+                    color: var(--dominant-white);
                 }
                 @media screen and (max-width: 600px) {
                     padding-block: 15px;
@@ -44,7 +44,7 @@
                 margin-top: 10px;
                 font-size: 17px;
                 text-decoration: underline;
-                color: var(--complementary-1);
+                color: var(--dominant-white);
                 background: none;
                 align-self: flex-end;
             }
@@ -78,16 +78,16 @@
                         }
                     }
                     .meta p.title{
-                        color: var(--complementary-1);
+                        color: var(--dominant-black);
                     }
                     .meta p.time {
-                        color: #FFFFFF8F;
+                        color: var(--dominant-white);
                     }
                 }
             }
             .count{
                 margin-bottom: 15px;
-                color: var(--complementary-1);
+                color: var(--dominant-white);
                 font-size: 18px;
                 margin-inline: 10px;
             }

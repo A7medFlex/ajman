@@ -44,17 +44,11 @@ class ChatController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        $users = User::where('id', '!=', auth()->id())->get();
-
-        try{
-            foreach ($users as $user){
-                Mail::to($user->email)->send(new ChatCreated($chat));
-            }
-        }catch(TransportException $e){
-            return back()->with('failed', 'حدث خطأ اثناء إرسال البريد الإلكتروني للمستخدمين.');
+        if(auth()->user()->is_admin) {
+            $this->release($chat);
         }
 
-        return back()->with('success', __('layout.chat_created'));
+        return redirect('/chats/' . $chat->id)->with('success', __('layout.chat_created'));
     }
 
     public function show(Chat $chat)
@@ -152,6 +146,16 @@ class ChatController extends Controller
                 url: route('chat.show', $chat),
                 username: $chat->user->name
             ));
+
+        $users = User::where('id', '!=', $chat->user->id)->get();
+
+        try{
+            foreach ($users as $user){
+                Mail::to($user->email)->send(new ChatCreated($chat));
+            }
+        }catch(TransportException $e){
+            return back()->with('failed', 'حدث خطأ اثناء إرسال البريد الإلكتروني للمستخدمين.');
+        }
 
         return redirect('/dashboard')->with('success', 'تم نشر المحادثة بنجاح.');
     }
