@@ -2,7 +2,7 @@
     <header>
         <div class="logo">
             <a href="/">
-                <img src="/images/logo.svg" alt="Logo">
+                <img src="/images/logo.png" alt="Logo">
             </a>
         </div>
         <div class="operations">
@@ -13,7 +13,7 @@
                 <div class="all_search" style="{{ session('results') ? 'display:block;' : 'display:none;' }}">
                     <div class="logo_close">
                         <div class="logo">
-                            <img src="{{ asset('images/logo.svg') }}" alt="Logo">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo">
                         </div>
                         <i onclick="this.parentElement.parentElement.style.display = 'none';document.body.style.overflow = 'auto';" class="fas fa-times"></i>
                     </div>
