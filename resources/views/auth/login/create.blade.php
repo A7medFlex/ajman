@@ -12,9 +12,9 @@
     @else
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200&display=swap" rel="stylesheet">
     @endif
-    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
-    {{-- <link rel="stylesheet" href="/build/assets/app-cf8a376c.css">
-    <script type="module" src="/build/assets/app-26cda308.js"></script> --}}
+    {{-- @vite(['resources/scss/app.scss', 'resources/js/app.js']) --}}
+    <link rel="stylesheet" href="/build/assets/app-1e3d105b.css">
+    <script type="module" src="/build/assets/app-86ccaf00.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <title>{{ __('layout.log_in') }}</title>
