@@ -27,7 +27,7 @@
         </p>
     @endif
     @if (session('failed'))
-        <p class="error popup">
+        <p class="error popup" style="color: black;">
             <i class="fas fa-wrong-circle"></i>
             {{ session('failed') }}
         </p>
@@ -90,7 +90,7 @@
                 </button> --}}
                 <a href="/forget-password" class="forget_password">نسيت كلمة المرور ؟</a>
                 <button type="submit">تسجيل الدخول</button>
-                <a class="special_button" href="https://stg-id.uaepass.ae/idshub/authorize?redirect_uri=http://localhost:8000/uaepass/callback&client_id=ajm_policy_web_stg&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low">
+                <a class="special_button" href="/uaepass/login">
                     <img src="/images/uaepass.svg" alt="">
                 </a>
             </div>

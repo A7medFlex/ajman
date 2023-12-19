@@ -47,6 +47,14 @@
                 @enderror
             </div>
 
+            <div class="form-group required">
+                <label for="mobile">رقم الهوية</label>
+                <input type="string" name="idn" id="mobile" value="{{ old("idn") }}">
+                @error('idn')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="form-group optional">
                 <label for="job_name">{{ __('layout.job_name') }}</label>
                 <input type="string" name="job_name" id="job_name" value="{{ old("job_name", 'موظف') }}">
@@ -54,6 +62,7 @@
                     <p class="error">{{ $message }}</p>
                 @enderror
             </div>
+
 
             <div class="form-group flex-1">
                 <button type="submit">{{ __('layout.create_user') }}</button>

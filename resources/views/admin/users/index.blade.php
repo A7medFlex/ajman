@@ -14,6 +14,7 @@
                         <th>{{ __('layout.name') }}</th>
                         <th>{{ __('layout.job_name') }}</th>
                         <th>{{ __('layout.email') }}</th>
+                        <th>رقم الهوية</th>
                         <th>{{ __('layout.settings') }}</th>
                     </tr>
                     @foreach ($users as $user)
@@ -30,6 +31,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->job_name }}</td>
                             <td>{{ $user->email }}</td>
+                            <td>{{ $user->idn }}</td>
                             <td class="operations">
                                 <span class="edit">
                                     <a href="/admin/users/{{ $user->id }}/edit">

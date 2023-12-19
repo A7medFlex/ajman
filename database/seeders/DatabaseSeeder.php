@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Ahmed Ragab',
+            'name' => 'سياسات عجمان',
             'job_name' => 'مدير النظام',
-            'email' => 'om5280201@gmail.com',
-            'password' => '@fdlj#jsa)kjdas',
+            'email' => 'policy@ajman.ae',
+            'password' => 'P0licy@2023',
             'is_admin' => true,
         ]);
     }

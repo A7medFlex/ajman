@@ -52,6 +52,14 @@
             </div>
 
             <div class="form-group required">
+                <label for="mobile">رقم الهوية</label>
+                <input type="string" name="idn" id="mobile" value="{{ $user->idn }}">
+                @error('idn')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="form-group required">
                 <label for="job_name">{{ __('layout.job_name') }}</label>
                 <input type="string" name="job_name" id="job_name" value="{{ old("job_name", $user->job_name ) }}">
                 @error('job_name')

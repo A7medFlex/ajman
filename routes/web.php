@@ -203,7 +203,7 @@ Route::middleware('auth')->group(function() {
 
     Route::post('/logout', function() {
         auth()->logout();
-        return redirect('/login');
+        return redirect('https://stg-id.uaepass.ae/idshub/logout?redirect_uri=http://localhost:8000');
     });
 
     // notifications
@@ -316,6 +316,9 @@ Route::middleware('auth')->group(function() {
 //     return redirect()->back()->withCookie(Cookie::forever('locale', $lang));
 // });
 
+Route::get('/uaepass/login', function() {
+    return redirect('https://stg-id.uaepass.ae/idshub/authorize?redirect_uri=http://localhost:8000/uaepass/callback&client_id=ajm_policy_web_stg&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low&ui_locales=ar');
+});
 
 Route::get('/uaepass/callback', function(){
         $code = request('code');
@@ -366,27 +369,30 @@ Route::get('/uaepass/callback', function(){
                     // Decode the JSON response from the command output
                     $user = json_decode($processUserInfo->getOutput(), true);
 
-                    if(request('state') === 'login'){
-                        $user = User::where('uaepass_id', $user['uuid'])->first();
+                    if($user['userType'] === 'SOP1') {
+                        return redirect('https://stg-id.uaepass.ae/idshub/logout?redirect_uri=http://localhost:8000/login')->with('failed', 'أنت غير مؤهل للوصول إلى هذه الخدمة. إما أن حسابك لم تتم ترقيته أو لديك حساب زائر. يرجى الاتصال بـ <اسم الجهة> لتتمكن من الوصول إلى الخدمة.');
+                    }
+                    else {
+                        $u = User::where('uuid', $user['uuid'])->first();
 
-                        if(! $user) return redirect('/login')->with('sucess', 'لم يتم ربط الحساب بعد.');
+                        if(! $u) {
+                            $u = User::where('idn', $user['idn'])->first();
 
-                        auth()->login($user);
+                            $u->update([
+                                'uuid' => $user['uuid']
+                            ]);
+                        }
+
+                        auth()->login($u);
                         return redirect('/');
                     }
 
-                    // Your existing code to use the user data
-                    auth()->user()->update([
-                        'uaepass_id' => $user['uuid'],
-                    ]);
-
-                    return redirect('/')->with('success', 'تم ربط الحساب بنجاح');
                 } else {
                     // Handle the error for user info
                     throw new ProcessFailedException($processUserInfo);
                 }
             } else {
-                throw new \Exception('Access token not found in response.');
+                return redirect('/login')->with('failed', 'قام المستخدم بإلغاء تسجيل الدخول');
             }
         } else {
             // Handle the error for the first cURL command

@@ -24,6 +24,8 @@ class User extends Authenticatable
         'job_name',
         'password',
         'profile_image',
+        'idn',
+        'uuid',
     ];
 
     /**
