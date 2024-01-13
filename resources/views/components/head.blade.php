@@ -315,7 +315,7 @@
                         <ul>
                             <a href="/blog">
                                 <h3>
-                                    <i class="fas fa-blog"></i>
+                                    <i class="fas fa-file-signature"></i>
                                     {{ __('layout.blog') }}
                                 </h3>
                             </a>

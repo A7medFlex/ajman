@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.core.css" integrity="sha512-ShLuspGzRsTiMlQ2Rg0e+atjy/gVQr3oYKnKmQkHQ6sxcnDAEOtOaPz2rRmeygV2CtnwUawDyHkGgH4zUbP3Hw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @stack('styles')
     {{-- @vite(['resources/scss/app.scss', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="/build/assets/app-5df7b15b.css">
+    <link rel="stylesheet" href="/build/assets/app-619bf963.css">
     <script type="module" src="/build/assets/app-86ccaf00.js"></script>
     <title>{{ $title }}</title>
 </head>

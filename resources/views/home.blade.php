@@ -11,7 +11,7 @@
                         <div class="header">
                             <a href="/blog">
                                 <span>
-                                    <i class="fas fa-blog"></i>
+                                    <i class="fas fa-file-signature"></i>
                                     {{ __('layout.blog') }}
                                 </span>
                             </a>

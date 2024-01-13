@@ -1,7 +1,7 @@
 <x-layout title="Blog">
     <div class="special_header">
         <span>
-            <i class="fas fa-blog"></i>
+            <i class="fas fa-file-signature"></i>
             {{ __('layout.blog') }}
         </span>
         <a href="/blog/create" class="create_user">

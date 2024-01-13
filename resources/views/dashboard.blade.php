@@ -58,7 +58,8 @@
                 <div class="static">
                     <div class="static_header">
                         <span>
-                            <i class="fas fa-blog"></i>
+                            <i class="fas fa-file-signature"></i>
+
                             عدد المدونات
                         </span>
                     </div>
@@ -128,7 +129,8 @@
                 <div class="static">
                     <div class="static_header">
                         <span>
-                            <i class="fas fa-blog"></i>
+                            <i class="fas fa-file-signature"></i>
+
                          المدونات
                         </span>
                     </div>
