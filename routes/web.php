@@ -321,7 +321,7 @@ Route::middleware('auth')->group(function() {
 // });
 
 Route::get('/uaepass/login', function() {
-    return redirect('https://id.uaepass.ae/idshub/authorize?redirect_uri=https://policy.ajman.ae/uaepass/callback&client_id=ajm_policy_web_prod&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low&ui_locales=ar');
+    return redirect('https://id.uaepass.ae/idshub/authorize?redirect_uri=https://policy.ajman.ae/uaepass/callback&client_id=ajman_policy_web_prod&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low&ui_locales=ar');
 });
 
 Route::get('/uaepass/callback', function(){
