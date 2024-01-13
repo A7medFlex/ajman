@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ReleasedEmail;
+use App\Mail\UnreleasedEmail;
 use App\Models\Attachment;
 use App\Models\Comment;
 use App\Models\Library;
@@ -212,6 +213,18 @@ class LibraryController extends Controller
 
         return redirect('/dashboard')->with('success', 'تم نشر المكتبة بنجاح.');
 
+    }
+
+    public  function unrelease(Library $library)
+    {
+        Mail::to($library->user->email)
+            ->send(new UnreleasedEmail(
+                type: 'مكتبة',
+                username: $library->user->name,
+                title: $library->title
+            ));
+
+        return redirect('/dashboard')->with('success', 'تم إلغاء نشر المكتبة بنجاح.');
     }
 
     public function unreleased()

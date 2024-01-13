@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ReleasedEmail;
+use App\Mail\UnreleasedEmail;
 use App\Models\Attachment;
 use App\Models\Blog;
 use App\Models\Comment;
@@ -215,6 +216,18 @@ class BlogController extends Controller
             ));
 
         return redirect('/dashboard')->with('success', 'تم نشر المدونة بنجاح.');
+    }
+
+    public  function unrelease(Blog $blog)
+    {
+        Mail::to($blog->user->email)
+            ->send(new UnreleasedEmail(
+                type: 'مدونة جديدة',
+                username: $blog->user->name,
+                title: $blog->title
+            ));
+
+        return redirect('/dashboard')->with('success', 'تم إلغاء نشر المدونة بنجاح.');
     }
 
     public function unreleased()

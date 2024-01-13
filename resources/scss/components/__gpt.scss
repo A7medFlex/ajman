@@ -150,17 +150,15 @@
     cursor: pointer;
     img{
         background-color: var(--dominant-white);
-        width: 55px;
-        position: fixed;
+        width: 35px;
+        // position: fixed;
         bottom: 50%;
-        right: 20px;
+        // right: 20px;
         border-radius: 50%;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
-        animation: rotate 2s infinite linear;
-        -webkit-animation: rotate 2s infinite linear;
 }
 }
 @keyframes rotate {

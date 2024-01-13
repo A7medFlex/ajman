@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CommentCreated;
 use App\Mail\ChatCreated;
 use App\Mail\ReleasedEmail;
+use App\Mail\UnreleasedEmail;
 use App\Models\Attachment;
 use App\Models\Chat;
 use App\Models\Message;
@@ -158,6 +159,18 @@ class ChatController extends Controller
         }
 
         return redirect('/dashboard')->with('success', 'تم نشر المحادثة بنجاح.');
+    }
+
+    public  function unrelease(Chat $chat)
+    {
+        Mail::to($chat->user->email)
+            ->send(new UnreleasedEmail(
+                type: 'مكتبة',
+                username: $chat->user->name,
+                title: $chat->title
+            ));
+
+        return redirect('/dashboard')->with('success', 'تم إلغاء نشر المحادثة بنجاح.');
     }
 
     public function unreleased()

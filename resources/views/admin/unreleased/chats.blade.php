@@ -34,7 +34,7 @@
                                     </form>
                                 </span>
                                 <span class="delete">
-                                    <form action="/chats/{{ $chat->id }}" method="POST">
+                                    <form action="/chats/{{ $chat->id }}/unrelease" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">

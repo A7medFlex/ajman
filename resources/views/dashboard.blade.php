@@ -105,7 +105,7 @@
         <div class="special_header">
             <span>
                 <i class="fal fa-box-check"></i>
-                منشورات تحتاج للمراجعة
+                منشورات تحتاج للموافقة
             </span>
         </div>
         <div class="statics_container">

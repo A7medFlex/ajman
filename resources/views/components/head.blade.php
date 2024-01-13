@@ -116,6 +116,42 @@
                         @endif
                     </div>
                 </div> --}}
+                <div class="gpt_button" onclick="this.nextElementSibling.classList.toggle('active')">
+                    <img src="/images/logowithoutname.png" alt="Avatar">
+                </div>
+                <div class="parentgpt" onclick="this.classList.toggle('active')">
+                    <div class="chatgpt">
+                        <div class="gpt_logo">
+                            <div class="logo">
+                                <img src="/images/logowithoutname.png" alt="Avatar">
+                                المساعد الذكي
+                            </div>
+                            <span class="delete_history">حذف المحاثة</span>
+                        </div>
+                        <div class="messages">
+                            <div class="right message" style="display: none;">
+                                {{-- <img src="images/gpt.png" alt="Avatar">
+                                <p>تحدث مع Chat-GPT الان</p> --}}
+                            </div>
+                          </div>
+                          <!-- End Chat -->
+
+                          <!-- Footer -->
+                          <div class="bottom">
+                            <div class="snippet" style="justify-content: center;display:none;margin-block:10px;" data-title="dot-flashing">
+                                <div class="stage">
+                                  <div class="dot-flashing"></div>
+                                </div>
+                            </div>
+                            <form class="gpt">
+                              <input type="text" id="message" name="message" placeholder="إكتب رسالتك ..." autocomplete="off">
+                              <button type="submit">
+                                <i class="fal fa-paper-plane"></i>
+                              </button>
+                            </form>
+                          </div>
+                    </div>
+                </div>
                 <div class="chat">
                     <span class="chat" onclick="this.nextElementSibling.classList.toggle('active')">
                         <i class="fab fa-telegram-plane fa-comment-alt"></i>

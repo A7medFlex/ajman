@@ -125,6 +125,10 @@ Route::middleware('auth')->group(function() {
         Route::delete('/chats/{chat}', [ChatController::class, 'destroy']);
 
 
+        Route::delete('/libraries/{library}/unrelease', [LibraryController::class, 'unrelease']);
+        Route::delete('/blogs/{blog}/unrelease', [BlogController::class, 'unrelease']);
+        Route::delete('/events/{event}/unrelease', [EventsController::class, 'unrelease']);
+        Route::delete('/chats/{chat}/unrelease', [ChatController::class, 'unrelease']);
 
     });
 

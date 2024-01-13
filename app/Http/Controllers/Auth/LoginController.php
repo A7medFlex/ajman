@@ -76,14 +76,14 @@ class LoginController extends Controller
         request()->validate([
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:5'],
-            // 'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
-            //     $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            //         'secret' => config('services.recaptcha.secret_key'),
-            //         'response' => $value,
-            //         'remoteip' => request()->ip(),
-            //     ]);
-            //     if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
-            // }],
+            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+                if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
+            }],
         ]);
 
         $user = User::where('email', request('email'))
@@ -106,14 +106,14 @@ class LoginController extends Controller
         request()->validate([
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:5'],
-            // 'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
-            //     $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-            //         'secret' => config('services.recaptcha.secret_key'),
-            //         'response' => $value,
-            //         'remoteip' => request()->ip(),
-            //     ]);
-            //     if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
-            // }],
+            'g-recaptcha-response' => ['required', function (string $attribute, mixed $value, Closure $fail) {
+                $g_response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => config('services.recaptcha.secret_key'),
+                    'response' => $value,
+                    'remoteip' => request()->ip(),
+                ]);
+                if(!$g_response->json('success')) $fail('الرجاء إعادة المحاولة');
+            }],
         ]);
 
         $user = User::where('email', request('email'))

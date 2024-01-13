@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\EventsResource;
 use App\Mail\ReleasedEmail;
+use App\Mail\UnreleasedEmail;
 use App\Models\Attachment;
 use App\Models\Comment;
 use App\Models\Event;
@@ -196,6 +197,18 @@ class EventsController extends Controller
 
         return redirect('/dashboard')->with('success', 'تم نشر الفعالية بنجاح.');
 
+    }
+
+    public  function unrelease(Event $event)
+    {
+        Mail::to($event->user->email)
+            ->send(new UnreleasedEmail(
+                type: 'مكتبة',
+                username: $event->user->name,
+                title: $event->title
+            ));
+
+        return redirect('/dashboard')->with('success', 'تم إلغاء نشر الفعاليةة بنجاح.');
     }
 
     public function unreleased()

@@ -34,7 +34,7 @@
                                     </form>
                                 </span>
                                 <span class="delete">
-                                    <form action="/libraries/{{ $lib->id }}" method="POST">
+                                    <form action="/libraries/{{ $lib->id }}/unrelease" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit">

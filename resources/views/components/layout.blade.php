@@ -18,9 +18,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.core.css" integrity="sha512-ShLuspGzRsTiMlQ2Rg0e+atjy/gVQr3oYKnKmQkHQ6sxcnDAEOtOaPz2rRmeygV2CtnwUawDyHkGgH4zUbP3Hw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @stack('styles')
-    {{-- @vite(['resources/scss/app.scss', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="/build/assets/app-1e3d105b.css">
-    <script type="module" src="/build/assets/app-86ccaf00.js"></script>
+    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    {{-- <link rel="stylesheet" href="/build/assets/app-1e3d105b.css">
+    <script type="module" src="/build/assets/app-86ccaf00.js"></script> --}}
     <title>{{ $title }}</title>
 </head>
 <body class="{{ app()->getLocale() === 'ar' ? 'ar' : '' }}">
@@ -39,43 +39,11 @@
         {{ $slot }}
     </div>
 
-    <div class="gpt_button" onclick="this.nextElementSibling.classList.toggle('active')">
+    {{-- <div class="gpt_button" onclick="this.nextElementSibling.classList.toggle('active')">
         <img src="/images/logowithoutname.png" alt="Avatar">
-    </div>
+    </div> --}}
 
-    <div class="parentgpt" onclick="this.classList.toggle('active')">
-        <div class="chatgpt">
-            <div class="gpt_logo">
-                <div class="logo">
-                    <img src="/images/logowithoutname.png" alt="Avatar">
-                    المساعد الذكي
-                </div>
-                <span class="delete_history">حذف المحاثة</span>
-            </div>
-            <div class="messages">
-                <div class="right message" style="display: none;">
-                    {{-- <img src="images/gpt.png" alt="Avatar">
-                    <p>تحدث مع Chat-GPT الان</p> --}}
-                </div>
-              </div>
-              <!-- End Chat -->
-
-              <!-- Footer -->
-              <div class="bottom">
-                <div class="snippet" style="justify-content: center;display:none;margin-block:10px;" data-title="dot-flashing">
-                    <div class="stage">
-                      <div class="dot-flashing"></div>
-                    </div>
-                </div>
-                <form class="gpt">
-                  <input type="text" id="message" name="message" placeholder="إكتب رسالتك ..." autocomplete="off">
-                  <button type="submit">
-                    <i class="fal fa-paper-plane"></i>
-                  </button>
-                </form>
-              </div>
-        </div>
-    </div>
+    
 
     <x-foot />
 

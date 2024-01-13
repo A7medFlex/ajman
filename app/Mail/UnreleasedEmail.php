@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,25 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendLoginLink extends Mailable implements ShouldQueue
+class UnreleasedEmail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct(protected User $user, protected string $url)
+    public function __construct(protected string $type, protected string $title, protected string $username)
     {
-        //
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Login Link',
+            subject: 'تم رفض طلبكم من قبل الإدارة ',
         );
     }
 
@@ -38,10 +30,11 @@ class SendLoginLink extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.send-login-link',
+            markdown: 'mail.unreleased-email',
             with: [
-                'name' => $this->user->name,
-                'url' => $this->url
+                'name' => $this->username,
+                'type' => $this->type,
+                'title' => $this->title,
             ]
         );
     }

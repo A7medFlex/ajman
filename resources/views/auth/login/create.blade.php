@@ -89,7 +89,12 @@
                     {{ __('layout.log_in') }}
                 </button> --}}
                 <a href="/forget-password" class="forget_password">نسيت كلمة المرور ؟</a>
-                <button type="submit">تسجيل الدخول</button>
+                <button type="submit"
+                    class="g-recaptcha"
+                    data-sitekey="{{ config('services.recaptcha.site_key') }}"
+                    data-callback='onSubmit'
+                    data-action='submit'
+                >تسجيل الدخول</button>
                 <a class="special_button" href="/uaepass/login">
                     <img src="/images/uaepass.svg" alt="">
                 </a>
