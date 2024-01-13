@@ -321,7 +321,7 @@ Route::middleware('auth')->group(function() {
 // });
 
 Route::get('/uaepass/login', function() {
-    return redirect('https://stg-id.uaepass.ae/idshub/authorize?redirect_uri=http://localhost:8000/uaepass/callback&client_id=ajm_policy_web_stg&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low&ui_locales=ar');
+    return redirect('https://id.uaepass.ae/idshub/authorize?redirect_uri=https://policy.ajman.ae/uaepass/callback&client_id=ajm_policy_web_prod&response_type=code&state=login&scope=urn:uae:digitalid:profile:general urn:uae:digitalid:profile:general:profileType urn:uae:digitalid:profile:general:unifiedId&acr_values=urn:safelayer:tws:policies:authentication:level:low&ui_locales=ar');
 });
 
 Route::get('/uaepass/callback', function(){
@@ -331,11 +331,11 @@ Route::get('/uaepass/callback', function(){
         $command = [
             'bash',
             '-c',
-            'OPENSSL_CONF=<(cat /etc/ssl/openssl.cnf ; echo Options = UnsafeLegacyRenegotiation) curl --location --request POST "https://stg-id.uaepass.ae/idshub/token" ' .
+            'OPENSSL_CONF=<(cat /etc/ssl/openssl.cnf ; echo Options = UnsafeLegacyRenegotiation) curl --location --request POST "https://id.uaepass.ae/idshub/token" ' .
             '--header "Content-Type: multipart/form-data" ' .
-            '--header "Authorization: Basic YWptX3BvbGljeV93ZWJfc3RnOkg3Q0RqSFVQcllTUk4yOFA=" ' .
+            '--header "Authorization: Basic YWptYW5fcG9saWN5X3dlYl9wcm9kOlByTE5YektDVll2alpaZDk=" ' .
             '--data "grant_type=authorization_code" ' .
-            '--data "redirect_uri=http://localhost:8000/uaepass/callback" ' .
+            '--data "redirect_uri=https://policy.ajman.ae/uaepass/callback" ' .
             '--data "code=' . $code . '"',
         ];
 
@@ -358,7 +358,7 @@ Route::get('/uaepass/callback', function(){
                 $command = [
                     'bash',
                     '-c',
-                    'OPENSSL_CONF=<(cat /etc/ssl/openssl.cnf ; echo Options = UnsafeLegacyRenegotiation) curl --location --request GET "https://stg-id.uaepass.ae/idshub/userinfo" ' .
+                    'OPENSSL_CONF=<(cat /etc/ssl/openssl.cnf ; echo Options = UnsafeLegacyRenegotiation) curl --location --request GET "https://id.uaepass.ae/idshub/userinfo" ' .
                     '--header "Authorization: Bearer ' . $access_token . '"',
                 ];
 
@@ -374,7 +374,7 @@ Route::get('/uaepass/callback', function(){
                     $user = json_decode($processUserInfo->getOutput(), true);
 
                     if($user['userType'] === 'SOP1') {
-                        return redirect('https://stg-id.uaepass.ae/idshub/logout?redirect_uri=http://localhost:8000/login')->with('failed', 'أنت غير مؤهل للوصول إلى هذه الخدمة. إما أن حسابك لم تتم ترقيته أو لديك حساب زائر. يرجى الاتصال بـ <اسم الجهة> لتتمكن من الوصول إلى الخدمة.');
+                        return redirect('https://id.uaepass.ae/idshub/logout?redirect_uri=https://policy.ajman.ae/login')->with('failed', 'أنت غير مؤهل للوصول إلى هذه الخدمة. إما أن حسابك لم تتم ترقيته أو لديك حساب زائر. يرجى الاتصال بـ <اسم الجهة> لتتمكن من الوصول إلى الخدمة.');
                     }
                     else {
                         $u = User::where('uuid', $user['uuid'])->first();
