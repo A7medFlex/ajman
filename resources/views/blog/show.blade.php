@@ -17,13 +17,13 @@
                     {{ $blog->created_at->diffForHumans() }}
                 </p>
             </div>
-            @if($blog->user_id === auth()->id())
+            @if($blog->user_id === auth()->id() || auth()->user()->is_admin)
                 <div class="actions">
                     <a href="/blog/{{ $blog->id }}/edit" class="btn btn-primary">
                         <i class="fal fa-edit"></i>
                         {{ __('layout.edit') }}
                     </a>
-                    <form action="/blog/{{ $blog->id }}" method="POST">
+                    <form action="/blogs/{{ $blog->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">

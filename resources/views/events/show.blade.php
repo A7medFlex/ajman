@@ -23,7 +23,7 @@
                     {{ \Carbon\Carbon::parse($event->end)->format('M d Y') }}
                 </p>
             </div>
-            @if($event->user_id === auth()->id())
+            @if($event->user_id === auth()->id() || auth()->user()->is_admin)
                 <div class="actions">
                     <a href="/events/{{ $event->id }}/edit" class="btn btn-primary">
                         <i class="fal fa-edit"></i>

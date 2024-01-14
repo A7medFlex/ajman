@@ -18,13 +18,13 @@
                 </p>
             </div>
 
-            @if($library->user_id === auth()->id())
+            @if($library->user_id === auth()->id() || auth()->user()->is_admin)
                 <div class="actions">
                     <a href="/library/{{ $library->id }}/edit" class="btn btn-primary">
                         <i class="fal fa-edit"></i>
                         {{ __('layout.edit') }}
                     </a>
-                    <form action="/library/{{ $library->id }}" method="POST">
+                    <form action="/libraries/{{ $library->id }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger">

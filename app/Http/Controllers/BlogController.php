@@ -173,11 +173,11 @@ class BlogController extends Controller
 
     public function destroy(Blog $blog)
     {
-        // $this->authorize('delete', $blog);
+        $this->authorize('delete', $blog);
 
         $blog->delete();
 
-        return back()->with('success', __('layout.blog_deleted'));
+        return redirect('/blog')->with('success', __('layout.blog_deleted'));
     }
 
     public function store_comment()

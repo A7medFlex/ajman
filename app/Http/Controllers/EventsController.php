@@ -138,10 +138,10 @@ class EventsController extends Controller
 
     public function destroy(Event $event)
     {
-        // if($event->user_id !== auth()->id()) abort(403);
+        if($event->user_id !== auth()->id() || !auth()->user()->is_admin) abort(403);
 
         $event->delete();
-        return back()->with('success', __('layout.event_deleted'));
+        return redirect('/events')->with('success', __('layout.event_deleted'));
     }
 
     public function all_events()

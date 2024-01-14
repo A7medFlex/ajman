@@ -214,7 +214,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/notifications/{notification}/{chat}', function($notification, $chat) {
         $notification = auth()->user()->notifications()->findOrFail($notification);
-        $notification->markAsRead();
+    $notification->markAsRead();
         // dd($notification);
         return redirect("/chats/{$chat}");
     });

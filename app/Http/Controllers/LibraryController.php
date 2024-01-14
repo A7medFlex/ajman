@@ -169,11 +169,11 @@ class LibraryController extends Controller
 
     public function destroy(Library $library)
     {
-        // $this->authorize('delete', $library);
+        $this->authorize('delete', $library);
 
         $library->delete();
 
-        return back()->with('success', __('layout.library_deleted'));
+        return redirect('/library')->with('success', __('layout.library_deleted'));
     }
 
     public function store_comment()

@@ -35,6 +35,19 @@
         </div> --}}
     </header>
 
+    @if (session('success'))
+    <p class="success popup">
+        <i class="fas fa-check-circle"></i>
+        {{ session('success') }}
+    </p>
+    @endif
+    @if (session('failed'))
+    <p class="error popup" style="color: black;">
+        <i class="fas fa-wrong-circle"></i>
+        {{ session('failed') }}
+    </p>
+    @endif
+
     <form action="/forget_password" method="post" id="loginForm">
         @csrf
         <div class="form">
