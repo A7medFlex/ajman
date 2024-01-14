@@ -208,6 +208,8 @@ class EventsController extends Controller
                 title: $event->title
             ));
 
+        $event->delete();
+
         return redirect('/dashboard')->with('success', 'تم إلغاء نشر الفعاليةة بنجاح.');
     }
 

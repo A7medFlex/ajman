@@ -32,7 +32,7 @@ class UnreleasedEmail extends Mailable implements ShouldQueue
         return new Content(
             markdown: 'mail.unreleased-email',
             with: [
-                'name' => $this->username,
+                'username' => $this->username,
                 'type' => $this->type,
                 'title' => $this->title,
             ]

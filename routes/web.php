@@ -207,7 +207,7 @@ Route::middleware('auth')->group(function() {
 
     Route::post('/logout', function() {
         auth()->logout();
-        return redirect('https://stg-id.uaepass.ae/idshub/logout?redirect_uri=http://localhost:8000');
+        return redirect('https://id.uaepass.ae/idshub/logout?redirect_uri=https://policy.ajman.ae/login');
     });
 
     // notifications

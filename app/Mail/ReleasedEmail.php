@@ -36,7 +36,7 @@ class ReleasedEmail extends Mailable implements ShouldQueue
         return new Content(
             markdown: 'mail.released-email',
             with: [
-                'name' => $this->username,
+                'username' => $this->username,
                 'type' => $this->type,
                 'url' => $this->url,
             ]

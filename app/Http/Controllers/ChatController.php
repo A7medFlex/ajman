@@ -170,6 +170,8 @@ class ChatController extends Controller
                 title: $chat->title
             ));
 
+        $chat->delete();
+
         return redirect('/dashboard')->with('success', 'تم إلغاء نشر المحادثة بنجاح.');
     }
 

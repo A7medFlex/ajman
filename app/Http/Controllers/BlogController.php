@@ -227,6 +227,8 @@ class BlogController extends Controller
                 title: $blog->title
             ));
 
+        $blog->delete();
+
         return redirect('/dashboard')->with('success', 'تم إلغاء نشر المدونة بنجاح.');
     }
 

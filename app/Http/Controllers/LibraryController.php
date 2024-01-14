@@ -224,6 +224,8 @@ class LibraryController extends Controller
                 title: $library->title
             ));
 
+        $library->delete();
+
         return redirect('/dashboard')->with('success', 'تم إلغاء نشر المكتبة بنجاح.');
     }
 
